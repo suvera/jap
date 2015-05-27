@@ -1,0 +1,43 @@
+package system;
+
+final class array<?T> {
+	public void __construct() {
+	}
+	
+	// search an item and return it's first position, or -1 if not exist
+	public int indexOf(?T $item) {
+		return -1;
+	}
+	
+	// search an item and return it's last position, or -1 if not exist
+	public int lasIndexOf(?T $item) {
+		return -1;
+	}
+	
+	/**
+	*  return index
+	*/
+	public int add(?T $item) {
+		return 1;
+	}
+	
+	// IndexOutof Exception
+	public ?T get(int $index) {
+		return null;
+	}
+	
+	// IndexOutof Exception
+	public bool set(int $index, ?T $item) {
+		return true;
+	}
+	
+	// return removed item
+	// IndexOutof Exception
+	public ?T remove(int $index) {
+        return null;
+	}
+	
+	public int size() {
+		return 0;
+	}
+}

@@ -1,0 +1,360 @@
+package system;
+
+class str {
+    public static string addcslashes(string $str, string $charlist) {
+        return "";
+    }
+
+    public static string addslashes(string $str) {
+        return "";
+    }
+
+    public static string bin2hex(string $str) {
+        return "";
+    }
+
+    public static string chr(int $ascii) {
+        return "";
+    }
+
+    public static string chunk_split(string $body, int $chunklen = 0, string $end = "") {
+        return "";
+    }
+
+    public static string convert_cyr_string(string $str, string $from, string $to) {
+        return "";
+    }
+
+    public static string convert_uudecode(string $data) {
+        return "";
+    }
+
+    public static string convert_uuencode(string $data) {
+        return "";
+    }
+
+    public static int count_chars(string $str) {
+        return 0;
+    }
+
+    public static int crc32(string $str) {
+        return 0;
+    }
+
+    public static string crypt(string $str, string $salt = "") {
+        return "";
+    }
+
+    public static array<string> explode(string $delimiter, string $str, int $limit = 0) {
+        array<string> $a;
+        return $a;
+    }
+
+    public static array<string> get_html_translation_table(int $table = 0, int $flags = 0, string $encoding = "") {
+        array<string> $a;
+        return $a;
+    }
+
+    public static string hebrev(string $hebrew_text, int $max_chars_per_line = 0) {
+        return "";
+    }
+
+    public static string hebrevc(string $hebrew_text, int $max_chars_per_line = 0) {
+        return "";
+    }
+
+    public static string hex2bin(string $data) {
+        return "";
+    }
+
+    public static string html_entity_decode(string $str, int $flags = 0, string $encoding = "") {
+        return "";
+    }
+
+    public static string htmlentities(string $str, int $flags = 0, string $encoding = "", bool $double_encode = false) {
+        return "";
+    }
+
+    public static string htmlspecialchars_decode(string $str, int $flags = 0) {
+        return "";
+    }
+
+    public static string htmlspecialchars(string $str, int $flags = 0, string $encoding = "", bool $double_encode = false) {
+        return "";
+    }
+
+    public static string implode(array<string> $pieces) {
+        return "";
+    }
+
+    public static string lcfirst(string $str) {
+        return "";
+    }
+
+    public static int levenshtein(string $str1, string $str2, int $cost_ins, int $cost_rep, int $cost_del) {
+        return 0;
+    }
+
+    public static array<string> localeconv() {
+        array<string> $a;
+        return $a;
+    }
+
+    public static string ltrim(string $str, string $character_mask = "") {
+        return "";
+    }
+
+    public static string md5_file(string $filename, bool $raw_output = false) {
+        return "";
+    }
+
+    public static string md5(string $str, bool $raw_output = false) {
+        return "";
+    }
+
+    public static string metaphone(string $str, int $phonemes = 0) {
+        return "";
+    }
+
+    public static string money_format(string $format, float $number) {
+        return "";
+    }
+
+    public static string nl_langinfo(int $item) {
+        return "";
+    }
+
+    public static string nl2br(string $str, bool $is_xhtml = false) {
+        return "";
+    }
+
+    public static string number_format(float $number, int $decimals, string $dec_point, string $thousands_sep) {
+        return "";
+    }
+
+    public static int ord(string $str) {
+        return 0;
+    }
+
+    public static void parse_str(string $str, array<string> $arr = "") {
+    }
+
+    public static string quoted_printable_decode(string $str) {
+        return "";
+    }
+
+    public static string quoted_printable_encode(string $str) {
+        return "";
+    }
+
+    public static string quotemeta(string $str) {
+        return "";
+    }
+
+    public static string rtrim(string $str, string $character_mask = "") {
+        return "";
+    }
+
+    public static string setlocale(int $category, array<string> $locale) {
+        return "";
+    }
+
+    public static string sha1_file(string $filename, bool $raw_output = false) {
+        return "";
+    }
+
+    public static string sha1(string $str, bool $raw_output = false) {
+        return "";
+    }
+
+    public static int similar_text(string $first, string $second, float $percent = 0.00) {
+        return 0;
+    }
+
+    public static string soundex(string $str) {
+        return "";
+    }
+
+    public static array<string> str_getcsv(string $input, string $delimiter = "", string $enclosure = "", string $escape = "") {
+        array<string> $a;
+        return $a;
+    }
+
+    public static string str_ireplace(string $search, string $replace, string $subject, int $count = 0) {
+        return "";
+    }
+
+    public static string str_pad(string $input, int $pad_length, string $pad_string = "", int $pad_type = 0) {
+        return "";
+    }
+
+    public static string str_repeat(string $input, int $multiplier) {
+        return "";
+    }
+
+    public static string str_replace(string $search, string $replace, string $subject, int $count = 0) {
+        return "";
+    }
+
+    public static string str_rot13(string $str) {
+        return "";
+    }
+
+    public static string str_shuffle(string $str) {
+        return "";
+    }
+
+    public static array<string> str_split(string $str, int $split_length = 0) {
+        array<string> $a;
+        return $a;
+    }
+
+    public static int str_word_count(string $str, int $format = 0, string $charlist = "") {
+        return 0;
+    }
+
+    public static int strcasecmp(string $str1, string $str2) {
+        return 0;
+    }
+
+    public static int strcmp(string $str1, string $str2) {
+        return 0;
+    }
+
+    public static int strcoll(string $str1, string $str2) {
+        return 0;
+    }
+
+    public static int strcspn(string $str1, string $str2, int $start = 0, int $length = 0) {
+        return 0;
+    }
+
+    public static string strip_tags(string $str, string $allowable_tags = "") {
+        return "";
+    }
+
+    public static string stripcslashes(string $str) {
+        return "";
+    }
+
+    public static int stripos(string $haystack, string $needle, int $offset = 0) {
+        return 0;
+    }
+
+    public static string stripslashes(string $str) {
+        return "";
+    }
+
+    public static string stristr(string $haystack, string $needle, bool $before_needle = false) {
+        return "";
+    }
+
+    public static int strlen(string $str) {
+        return 0;
+    }
+
+    public static int strnatcasecmp(string $str1, string $str2) {
+        return 0;
+    }
+
+    public static int strnatcmp(string $str1, string $str2) {
+        return 0;
+    }
+
+    public static int strncasecmp(string $str1, string $str2, int $len) {
+        return 0;
+    }
+
+    public static int strncmp(string $str1, string $str2, int $len) {
+        return 0;
+    }
+
+    public static string strpbrk(string $haystack, string $char_list) {
+        return "";
+    }
+
+    public static int strpos(string $haystack, string $needle, int $offset = 0) {
+        return -1;
+    }
+
+    public static string strrchr(string $haystack, string $needle) {
+        return "";
+    }
+
+    public static string strrev(string $str) {
+        return "";
+    }
+
+    public static int strripos(string $haystack, string $needle, int $offset = 0) {
+        return 0;
+    }
+
+    public static int strrpos(string $haystack, string $needle, int $offset = 0) {
+        return 0;
+    }
+
+    public static int strspn(string $subject, string $mask, int $start = 0, int $length = 0) {
+        return 0;
+    }
+
+    public static string strstr(string $haystack, string $needle, bool $before_needle = false) {
+        return "";
+    }
+
+    public static string strtok(string $token) {
+        return "";
+    }
+
+    public static string strtolower(string $str) {
+        return "";
+    }
+
+    public static string strtoupper(string $str) {
+        return "";
+    }
+
+    public static string strtr(string $str, array<string> $replace_pairs) {
+        return "";
+    }
+
+    public static int substr_compare(string $main_str, string $str, int $offset, int $length = 0, bool $case_insensitivity = false) {
+        return 0;
+    }
+
+    public static int substr_count(string $haystack, string $needle, int $offset = 0, int $length = 0) {
+        return 0;
+    }
+
+    public static string substr_replace(string $str, string $replacement, string $start, int $length = 0) {
+        return "";
+    }
+
+    public static string substr(string $str, int $start, int $length = 0) {
+        return "";
+    }
+
+    public static string trim(string $str, string $character_mask = "") {
+        return "";
+    }
+
+    public static string ucfirst(string $str) {
+        return "";
+    }
+
+    public static string ucwords(string $str) {
+        return "";
+    }
+
+    public static int vprintf(string $format, array<string> $args) {
+        return 0;
+    }
+
+    public static string vsprintf(string $format, array<string> $args) {
+        return "";
+    }
+
+    public static string wordwrap(string $str, int $width = 0, string $brk = "", bool $cut = false) {
+        return "";
+    }
+
+}

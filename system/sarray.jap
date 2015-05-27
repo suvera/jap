@@ -1,0 +1,40 @@
+package system;
+
+final class sarray<?T> {
+	public void __construct() {
+	}
+	
+	// search an item and return it's first key, or NULL if not exist
+	public string indexOf(?T $item) {
+		return "";
+	}
+	
+	// search an item and return it's last key, or NULL if not exist
+	public string lasIndexOf(?T $item) {
+		return "";
+	}
+
+	//has key
+	public bool hasKey(string $key) {
+		return false;
+	}
+	
+	// NoKey Exception
+	public ?T get(string $key) {
+		return null;
+	}
+	
+	public bool set(string $key, ?T $item) {
+		return true;
+	}
+	
+	// return removed item
+	// NoKey Exception
+	public ?T remove(string $key) {
+		return null;
+	}
+	
+	public int size() {
+		return 0;
+	}
+}

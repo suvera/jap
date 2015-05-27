@@ -1,0 +1,9 @@
+[submodule "cereal"]
+	path = cereal
+	url = https://github.com/USCiLab/cereal.git
+[submodule "cmdline"]
+	path = cmdline
+	url = https://github.com/tanakh/cmdline.git
+[submodule "inih"]
+	path = inih
+	url = https://github.com/Blandinium/inih

@@ -1,0 +1,55 @@
+package tests;
+
+class Fibonacci {
+
+    public int $a;
+    
+    public static string $name = "Fibonacci series Generator";
+
+    public static void main(array<string> $argv, int $argc) {
+        if ($argc < 2) {
+            echo "Please enter number\n";
+            return;
+        }
+        
+        Fibonacci $f = new Fibonacci();
+        $f->generate($argv[1]);
+        
+        echo "\n";
+    }
+    
+    public void generate(int $n) {
+        int $a = 0;
+        int $b = 1;
+        
+        int $m = 0;
+        int $t;
+        while ($m < $n) {
+            if ($m == 0) {
+                echo $a;
+                echo " ";
+                $m++;
+                continue;
+            }
+            if ($m == 1) {
+                echo $b;
+                echo " ";
+                $m++;
+                continue;
+            }
+            
+            $t = $b;
+            $b += $a;
+            $a = $t;
+            
+            echo $b;
+            echo " ";
+            
+            $m++;
+        }
+    }
+    
+    public string ttt() {
+        return "aa";
+    }
+}

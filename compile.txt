@@ -1,0 +1,32 @@
+# Boost Library installation
+sudo apt-get install libboost-all-dev
+# or libboost-filesystem-dev libboost-serialization1.54-dev
+
+dpkg -s libboost-dev | grep 'Version'
+Version: 1.54.0.1ubuntu1
+
+
+
+git submodule update --init --recursive
+
+
+// Bison
+bison jap.y --language=c++ --defines=jap.tab.hh --verbose
+
+#flex --header-file=lex.yy.hh jap.l;g++ -I. -std=gnu++11 lex.yy.cc -o jap;
+flex --header-file=lex.yy.hh jap.l;g++ -I. -std=gnu++11 lex.yy.cc -o jap -lboost_system -lboost_filesystem -lboost_serialization;
+
+flex --header-file=lex.yy.hh jap.l;g++ -I. -I./inih -I./cmdline -std=gnu++11 lex.yy.cc -o jap -lboost_system -lboost_filesystem -I./cereal/include;
+
+
+./jap test.jap
+
+g++ -I. -std=gnu++11 japp.cpp -o japp -lboost_system -lboost_filesystem -I./cereal/include -I./inih -I./cmdline
+g++ -I. -std=gnu++11 japx.cpp -o japx -lboost_system -lboost_filesystem -I./cereal/include -I./inih -I./cmdline
+
+
+g++ -I. -I./inih -I./cmdline -std=gnu++11 lex.yy.cc -o jap -I/home/rnarmala/boost/boost_1_54_0 -L/home/rnarmala/boost/boost_1_54_0/stage/lib -lboost_system -lboost_filesystem -I./cereal/include
+
+g++ -I. -std=gnu++11 japp.cpp -o japp -I/home/rnarmala/boost/boost_1_54_0 -L/home/rnarmala/boost/boost_1_54_0/stage/lib -lboost_system -lboost_filesystem -I./cereal/include -I./inih -I./cmdline
+
+g++ -I. -std=gnu++11 japx.cpp -o japx -I/home/rnarmala/boost/boost_1_54_0 -L/home/rnarmala/boost/boost_1_54_0/stage/lib -lboost_system -lboost_filesystem -I./cereal/include -I./inih -I./cmdline

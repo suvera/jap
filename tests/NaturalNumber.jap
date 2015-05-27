@@ -1,0 +1,38 @@
+package tests;
+
+class NaturalNumber {
+    public int $test;
+    
+    public int $b = 10;
+    
+    
+    public const string $X = "Hello,World!";
+    
+    public void test() {
+        int $a_int = 200 + 600;
+        float $b;
+        //XYZ $a = new XYZ();
+        
+        if (true) {
+            echo "Hello";
+        }
+    }
+    
+    private int _test(int $a) {
+        //return 0;
+    }
+    
+    protected void _abstrct() {
+    }
+    
+    public static void main(array<string> $argv, int $argc) {
+        OtherClass $obj = new OtherClass();
+        
+        print self::X . "\n";
+        echo $obj->i . "\n";
+    }
+}
+
+class OtherClass {
+    public float $i = 7.00;
+}

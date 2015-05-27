@@ -1,0 +1,190 @@
+package system;
+
+class math {
+    public static int abs(int $number) {
+        return 0;
+    }
+    
+    public static int absf(float $number) {
+        return 0;
+    }
+
+    public static float acos(float $arg) {
+        return 0.00;
+    }
+
+    public static float acosh(float $arg) {
+        return 0.00;
+    }
+
+    public static float asin(float $arg) {
+        return 0.00;
+    }
+
+    public static float asinh(float $arg) {
+        return 0.00;
+    }
+
+    public static float atan2(float $y, float $x) {
+        return 0.00;
+    }
+
+    public static float atan(float $arg) {
+        return 0.00;
+    }
+
+    public static float atanh(float $arg) {
+        return 0.00;
+    }
+
+    public static string base_convert(string $number, int $frombase, int $tobase) {
+        return "";
+    }
+
+    public static int bindec(string $binary_string) {
+        return 0;
+    }
+
+    public static float ceil(float $value) {
+        return 0.00;
+    }
+
+    public static float cos(float $arg) {
+        return 0.00;
+    }
+
+    public static float cosh(float $arg) {
+        return 0.00;
+    }
+
+    public static string decbin(int $number) {
+        return "";
+    }
+
+    public static string dechex(int $number) {
+        return "";
+    }
+
+    public static string decoct(int $number) {
+        return "";
+    }
+
+    public static float deg2rad(float $number) {
+        return 0.00;
+    }
+
+    public static float exp(float $arg) {
+        return 0.00;
+    }
+
+    public static float expm1(float $arg) {
+        return 0.00;
+    }
+
+    public static float floor(float $value) {
+        return 0.00;
+    }
+
+    public static float fmod(float $x, float $y) {
+        return 0.00;
+    }
+
+    public static int getrandmax() {
+        return 0;
+    }
+
+    public static int hexdec(string $hex_string) {
+        return 0;
+    }
+
+    public static float hypot(float $x, float $y) {
+        return 0.00;
+    }
+
+    public static bool is_finite(float $val) {
+        return false;
+    }
+
+    public static bool is_infinite(float $val) {
+        return false;
+    }
+
+    public static bool is_nan(float $val) {
+        return false;
+    }
+
+    public static float lcg_value() {
+        return 0.00;
+    }
+
+    public static float log10(float $arg) {
+        return 0.00;
+    }
+
+    public static float log1p(float $number) {
+        return 0.00;
+    }
+
+    public static float log(float $arg, float $base = 0.00) {
+        return 0.00;
+    }
+
+    public static int mt_getrandmax() {
+        return 0;
+    }
+
+    public static int mt_rand(int $min, int $max) {
+        return 0;
+    }
+
+    public static void mt_srand(int $seed = 0) {
+    }
+
+    public static int octdec(string $octal_string) {
+        return 0;
+    }
+
+    public static float pi() {
+        return 0.00;
+    }
+
+    public static int pow(int $base, int $exp) {
+        return 0;
+    }
+
+    public static float rad2deg(float $number) {
+        return 0.00;
+    }
+
+    public static int rand(int $min, int $max) {
+        return 0;
+    }
+
+    public static float round(float $val, int $precision = 0, int $mode = 0) {
+        return 0.00;
+    }
+
+    public static float sin(float $arg) {
+        return 0.00;
+    }
+
+    public static float sinh(float $arg) {
+        return 0.00;
+    }
+
+    public static float sqrt(float $arg) {
+        return 0.00;
+    }
+
+    public static void srand(int $seed = 0) {
+    }
+
+    public static float tan(float $arg) {
+        return 0.00;
+    }
+
+    public static float tanh(float $arg) {
+        return 0.00;
+    }
+
+}

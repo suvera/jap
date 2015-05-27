@@ -1,0 +1,29 @@
+//package test.utils;
+/*
+ * Comments
+ * test
+ */
+import su.bbu;
+import abcd;
+
+class Test {
+    public /* abcd */ int $a;
+    
+    private string $b;
+    
+    public void hello() {
+        int $a = 567;
+        string $b = "abcd";
+        double $c = 67 + 90 - 78 * 6/3;
+        
+        ABCD::xyz();
+        
+        if (2 > 6) {
+        } elseif(6 + 0 < 7) {
+        } else if(6 == 7) {
+        } else {
+        }
+        
+        this->a = 100;
+    }
+}
