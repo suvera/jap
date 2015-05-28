@@ -1,5 +1,3 @@
-package tests;
-
 class Fibonacci {
 
     public int $a;

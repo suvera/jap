@@ -10,19 +10,15 @@ struct JapConfig {
 
 	unordered_map<string, unordered_map<string, string>> _default;
 
-	INIReader* external;
+	StringMap external;
 
 	// constructor
 	JapConfig() {
 		this->_init();
-		this->external = NULL;
 		this->setLogging();
 	}
 
 	~JapConfig() {
-	    if (this->external != NULL) {
-	        delete this->external;
-	    }
     }
 
 	// constructor
@@ -34,9 +30,7 @@ struct JapConfig {
 
 	// ini file
 	void setIniFile(string iniFile) {
-		this->external = new INIReader(iniFile);
-
-		if (this->external->ParseError() < 0) {
+		if (parseIniFile(iniFile.c_str(), external) < 0) {
 			throw std::invalid_argument("Can't load ini file '" + iniFile + "'\n");
 		}
 
@@ -84,20 +78,12 @@ struct JapConfig {
 
 	// get value
 	string Get(string name) {
-		vector<string> list = explode(name, string("."));
-
-		if (list.size() > 2) {
-		    logger.warn(string("Invalid ini option " + name));
+        if (external.count(name) > 0) {
+            return external.at(name);
+        } else {
+            logger.warn(string("Invalid ini option " + name));
 			return string("");
-		} else if (this->external != NULL) {
-			if (list.size() == 2) {
-				return this->external->Get(list[0], list[1], this->_getDefault(list[0], list[1]));
-			} else {
-				return this->external->Get(string("jap"), list[0], this->_getDefault(string("jap"), list[0]));
-			}
-		} else {
-			return this->_getDefault(string("jap"), name);
-		}
+        }
 	}
 
 	long GetInteger(const char* name) {

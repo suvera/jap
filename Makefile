@@ -3,21 +3,22 @@ prefix = /usr/local
 # The directory to install tar in.
 bindir = $(prefix)/bin
 CC=g++
-CFLAGS= -Wno-write-strings -I. -I./inih -I./cmdline -std=gnu++11 -lboost_system -lboost_filesystem -I./cereal/include
+BOOST_INC=-lboost_system -lboost_filesystem
+CFLAGS= -Wno-write-strings -I. -I./cmdline -std=gnu++11 -I./cereal/include
 
 all: jap japp japx
 
 jap: lex.yy.cc
 	mkdir -p $(BUILDS)
-	$(CC) $(CFLAGS) lex.yy.cc -o $(BUILDS)/jap
+	$(CC) $(CFLAGS) lex.yy.cc $(BOOST_INC) -o $(BUILDS)/jap
 
 japp: japp.cpp
 	mkdir -p $(BUILDS)
-	$(CC) $(CFLAGS) japp.cpp -o $(BUILDS)/japp
+	$(CC) $(CFLAGS) japp.cpp $(BOOST_INC) -o $(BUILDS)/japp
 
 japx: japx.cpp
 	mkdir -p $(BUILDS)
-	$(CC) $(CFLAGS) japx.cpp -o $(BUILDS)/japx
+	$(CC) $(CFLAGS) japx.cpp $(BOOST_INC) -o $(BUILDS)/japx
 
 install: all
 	cp $(BUILDS)/jap $(bindir)/jap

@@ -1,5 +1,3 @@
-package tests;
-
 class NaturalNumber {
     public int $test;
     

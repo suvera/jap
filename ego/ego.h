@@ -39,17 +39,12 @@
 #include <cereal/archives/portable_binary.hpp>
 #include <cereal/archives/xml.hpp>
 
-//inih includes
-#include <ini.h>
-#include <ini.c>
-#include <cpp/INIReader.h>
-#include <cpp/INIReader.cpp>
-
 using namespace std;
 
 #include <ego/Map.h>
 
 typedef unsigned long BIGINT;
+typedef unordered_map<string, string> StringMap;
 
 #ifndef EGO_H_
 #define EGO_H_
@@ -261,6 +256,30 @@ std::string add_slashes(string subject) {
 	return ret;
 }
 
+// trim from start
+static inline std::string &ltrim(std::string &s) {
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
+    return s;
+}
+
+// trim from end
+static inline std::string &rtrim(std::string &s) {
+    s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+    return s;
+}
+
+// trim from both ends
+static inline std::string &trim(std::string &s) {
+    return ltrim(rtrim(s));
+}
+
+
+
+int readFromFile(const string& file, string& data);
+
+// Parse INI file into Map
+int parseIniFile(const char *file, StringMap& list);
+
 
 namespace fileIO = boost::filesystem;
 
@@ -285,6 +304,133 @@ extern JapConfig JC;
 JapConfig JC;
 #include <ego/ParseNode.cpp>
 
+
+int readFromFile(const string& file, string& data) {
+    FILE *fp = fopen(file.c_str(), "rb");
+
+    if (fp == NULL) {
+        return 0;
+    }
+
+    long lSize;
+    char *buffer;
+    size_t result;
+
+    // obtain file size:
+    fseek(fp, 0, SEEK_END);
+    lSize = ftell(fp);
+    rewind(fp);
+
+    if (lSize == 0) {
+        fclose(fp);
+        return 1;
+    }
+
+    // allocate memory to contain the whole file:
+    buffer = (char*) malloc(sizeof(char) * lSize);
+    if (buffer == NULL) {
+        fclose(fp);
+        return 0;
+    }
+
+    // copy the file into the buffer:
+    result = fread(buffer, 1, lSize, fp);
+    if (result != lSize) {
+        return 0;
+    }
+
+    data.append(buffer);
+
+    fclose(fp);
+    free(buffer);
+    return 1;
+}
+
+// Parse INI file into Map
+int parseIniFile(const char *file, StringMap& list) {
+    if (!strlen(file)) {
+        return 0;
+    }
+    
+    string fileData;
+    if (!readFromFile(file, fileData)) {
+        return -1;
+    }
+
+    string vName;
+    string value;
+    int gotEqual = 0, inString = 0, inComment = 0, lastC = 0, c = 0, ch = 0, len = fileData.length();
+    bool add = false;
+    char buf[3];
+
+    while (c < len) {
+        ch = fileData[c++];
+        
+        if (ch == '\n') {
+            vName = trim(vName);
+            value = trim(value);
+            
+            //cout << "Got: " << vName << "=" << value << "\n";
+            
+            if (vName.length() && value.length()) {
+                list[vName] = value;
+            }
+            
+            vName.clear();
+            value.clear();
+            
+            inString = 0;
+            gotEqual = 0;
+            inComment = 0;
+        } else if (ch == '#' && !inString) {
+            inComment = 1;
+        } else {
+            
+            if (inComment) {
+                continue;
+            }
+            
+            if (gotEqual) {
+                add = true;
+                if (inString) {
+                    if (lastC != '\\' && ch == '"') {
+                        // end string
+                        inString = 0;
+                        add = false;
+                    }
+                } else {
+                    if (value.length() == 0 && lastC != '\\' && ch == '"') {
+                        inString = 1;
+                        add = false;
+                    }
+                }
+                
+                if (ch == ' ' && value.length() == 0) {
+                    // skip white space
+                    add = false;
+                }
+                
+                if (add) value.append(1, ch);
+            } else {
+                if (ch == '=') {
+                    gotEqual = 1;
+                } else {
+                    vName.append(1, ch);
+                }
+            }
+        }
+        
+        lastC = ch;
+    }
+    
+    vName = trim(vName);
+    value = trim(value);
+    if (vName.length() && value.length()) {    
+        list[vName] = value;
+    }
+    
+    return 1;
+}
 
 /**
  * Header for ego namespace

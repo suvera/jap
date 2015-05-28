@@ -1,0 +1,13 @@
+
+class CmdLine1 {
+	public static void main(array<string> $args, int $argc) {
+	
+		if ($argc < 2) {
+			echo "Error: invalid usage of command\n";
+			return;
+		}
+		
+		echo "Program: " . $args[0] . "\n";
+		echo "Hello " . $args[1] . "\n";
+	}
+}

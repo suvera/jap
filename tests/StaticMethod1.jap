@@ -1,0 +1,10 @@
+
+class StaticMethod1 {
+	public static void main(array<string> $args, int $argc) {
+		StaticMethod1::StaticMethod();
+	}
+	
+	private static void StaticMethod() {
+		echo "Hello, StaticMethod\n";
+	}
+}

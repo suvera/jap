@@ -16,6 +16,7 @@ private:
     int level;
     string logFile;
     bool failed;
+    int curLevel;
 public:
 	JapLogger() {
 	    level = 2;
@@ -31,6 +32,7 @@ public:
 
     void setLevel(int lev) {
         level = lev;
+        curLevel = lev;
     }
 
     void setLevel(string lev) {
@@ -49,6 +51,8 @@ public:
         } else if (lev == "fatal") {
             level = LOG_FATAL;
         }
+        
+        curLevel = level;
     }
 
     char* getLevelText() const {
@@ -126,4 +130,5 @@ public:
     int fatal(const string& msg) {
         return this->log(msg, LOG_FATAL);
     }
+    
 };

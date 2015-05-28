@@ -7,3 +7,5 @@ ast
 builds
 jap.output
 test.log
+tests/ast
+tests/target

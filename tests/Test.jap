@@ -1,0 +1,6 @@
+
+class Test {
+	public static void main(array<string> $args, int $argc) {
+		echo "Hello, Wrold!\n";
+	}
+}
