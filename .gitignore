@@ -2,10 +2,12 @@
 .project
 a.out
 target
-ast
+/ast
 .idea
 builds
 jap.output
 test.log
 tests/ast
 tests/target
+lib/target
+lib/ast/system/*.xml

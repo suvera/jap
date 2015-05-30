@@ -1,4 +1,4 @@
-// A Bison parser, made by GNU Bison 3.0.
+// A Bison parser, made by GNU Bison 3.0.2.
 
 // Skeleton implementation for Bison LALR(1) parsers in C++
 
@@ -32,7 +32,7 @@
 
 
 // First part of user declarations.
-#line 1 "jap.y" // lalr1.cc:398
+#line 1 "jap.y" // lalr1.cc:399
 
 #include <math.h>
 #include <iostream>
@@ -42,13 +42,13 @@ using namespace std;
 typedef yy::parser::semantic_type semtcNode;
 #include <ego/ParserHelper.hpp>
 
-#line 46 "jap.tab.cc" // lalr1.cc:398
+#line 46 "jap.tab.cc" // lalr1.cc:399
 
-# ifndef YY_NULL
+# ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
-#   define YY_NULL nullptr
+#   define YY_NULLPTR nullptr
 #  else
-#   define YY_NULL 0
+#   define YY_NULLPTR 0
 #  endif
 # endif
 
@@ -56,7 +56,7 @@ typedef yy::parser::semantic_type semtcNode;
 
 // User implementation prologue.
 
-#line 60 "jap.tab.cc" // lalr1.cc:406
+#line 60 "jap.tab.cc" // lalr1.cc:407
 
 
 #ifndef YY_
@@ -142,7 +142,7 @@ typedef yy::parser::semantic_type semtcNode;
 
 
 namespace yy {
-#line 146 "jap.tab.cc" // lalr1.cc:473
+#line 146 "jap.tab.cc" // lalr1.cc:474
 
   /// Build a parser object.
   parser::parser ()
@@ -387,13 +387,13 @@ namespace yy {
 #endif // YYDEBUG
 
   inline parser::state_type
-  parser::yy_lr_goto_state_ (state_type yystate, int yylhs)
+  parser::yy_lr_goto_state_ (state_type yystate, int yysym)
   {
-    int yyr = yypgoto_[yylhs - yyntokens_] + yystate;
+    int yyr = yypgoto_[yysym - yyntokens_] + yystate;
     if (0 <= yyr && yyr <= yylast_ && yycheck_[yyr] == yystate)
       return yytable_[yyr];
     else
-      return yydefgoto_[yylhs - yyntokens_];
+      return yydefgoto_[yysym - yyntokens_];
   }
 
   inline bool
@@ -416,6 +416,7 @@ namespace yy {
 
     // State.
     int yyn;
+    /// Length of the RHS of the rule being reduced.
     int yylen = 0;
 
     // Error handling.
@@ -427,9 +428,6 @@ namespace yy {
 
     /// The locations where the error started and ended.
     stack_symbol_type yyerror_range[3];
-
-    /// $$ and @$.
-    stack_symbol_type yylhs;
 
     /// The return value of parse ().
     int yyresult;
@@ -446,7 +444,7 @@ namespace yy {
        location values to have been already stored, initialize these
        stacks with a primary value.  */
     yystack_.clear ();
-    yypush_ (YY_NULL, 0, yyla);
+    yypush_ (YY_NULLPTR, 0, yyla);
 
     // A new symbol was pushed on the stack.
   yynewstate:
@@ -524,57 +522,59 @@ namespace yy {
   `-----------------------------*/
   yyreduce:
     yylen = yyr2_[yyn];
-    yylhs.state = yy_lr_goto_state_(yystack_[yylen].state, yyr1_[yyn]);
-    /* If YYLEN is nonzero, implement the default value of the action:
-       '$$ = $1'.  Otherwise, use the top of the stack.
-
-       Otherwise, the following line sets YYLHS.VALUE to garbage.
-       This behavior is undocumented and Bison
-       users should not rely upon it.  */
-    if (yylen)
-      yylhs.value = yystack_[yylen - 1].value;
-    else
-      yylhs.value = yystack_[0].value;
-
-    // Compute the default @$.
     {
-      slice<stack_symbol_type, stack_type> slice (yystack_, yylen);
-      YYLLOC_DEFAULT (yylhs.location, slice, yylen);
-    }
+      stack_symbol_type yylhs;
+      yylhs.state = yy_lr_goto_state_(yystack_[yylen].state, yyr1_[yyn]);
+      /* If YYLEN is nonzero, implement the default value of the
+         action: '$$ = $1'.  Otherwise, use the top of the stack.
 
-    // Perform the reduction.
-    YY_REDUCE_PRINT (yyn);
-    try
+         Otherwise, the following line sets YYLHS.VALUE to garbage.
+         This behavior is undocumented and Bison users should not rely
+         upon it.  */
+      if (yylen)
+        yylhs.value = yystack_[yylen - 1].value;
+      else
+        yylhs.value = yystack_[0].value;
+
+      // Compute the default @$.
       {
-        switch (yyn)
-          {
+        slice<stack_symbol_type, stack_type> slice (yystack_, yylen);
+        YYLLOC_DEFAULT (yylhs.location, slice, yylen);
+      }
+
+      // Perform the reduction.
+      YY_REDUCE_PRINT (yyn);
+      try
+        {
+          switch (yyn)
+            {
   case 2:
-#line 176 "jap.y" // lalr1.cc:846
+#line 176 "jap.y" // lalr1.cc:847
     { 
         //std::cout << "parsing rules end\n";
         ego_file_processing_end();
     }
-#line 558 "jap.tab.cc" // lalr1.cc:846
+#line 558 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 3:
-#line 181 "jap.y" // lalr1.cc:846
+#line 181 "jap.y" // lalr1.cc:847
     { 
         //std::cout << "parsing rules end\n"; 
     }
-#line 566 "jap.tab.cc" // lalr1.cc:846
+#line 566 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 4:
-#line 186 "jap.y" // lalr1.cc:846
+#line 186 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node(); 
     }
-#line 574 "jap.tab.cc" // lalr1.cc:846
+#line 574 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 5:
-#line 189 "jap.y" // lalr1.cc:846
+#line 189 "jap.y" // lalr1.cc:847
     {
     
         if (kicker->pkg.compare((yystack_[1].value).sVal) != 0) {
@@ -585,93 +585,93 @@ namespace yy {
         
         //std::cout << "package found: " << $2.sVal << "\n";
     }
-#line 589 "jap.tab.cc" // lalr1.cc:846
+#line 589 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 6:
-#line 201 "jap.y" // lalr1.cc:846
+#line 201 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
     }
-#line 597 "jap.tab.cc" // lalr1.cc:846
+#line 597 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 7:
-#line 204 "jap.y" // lalr1.cc:846
+#line 204 "jap.y" // lalr1.cc:847
     {
         (yylhs.value).assign((yystack_[2].value).sVal+(yystack_[1].value).sVal+(yystack_[0].value).sVal);
     }
-#line 605 "jap.tab.cc" // lalr1.cc:846
+#line 605 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 8:
-#line 209 "jap.y" // lalr1.cc:846
+#line 209 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node(); 
     }
-#line 613 "jap.tab.cc" // lalr1.cc:846
+#line 613 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 10:
-#line 215 "jap.y" // lalr1.cc:846
+#line 215 "jap.y" // lalr1.cc:847
     { 
         //std::cout << "import found: " << $2.sVal << "\n";; 
     }
-#line 621 "jap.tab.cc" // lalr1.cc:846
+#line 621 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 11:
-#line 220 "jap.y" // lalr1.cc:846
+#line 220 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value);
         kicker->importClass((yystack_[0].value).sVal);
     }
-#line 630 "jap.tab.cc" // lalr1.cc:846
+#line 630 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 12:
-#line 224 "jap.y" // lalr1.cc:846
+#line 224 "jap.y" // lalr1.cc:847
     {
         (yylhs.value).assign((yystack_[2].value).sVal+(yystack_[1].value).sVal+(yystack_[0].value).sVal);
         kicker->importPackage((yystack_[2].value).sVal);
     }
-#line 639 "jap.tab.cc" // lalr1.cc:846
+#line 639 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 16:
-#line 235 "jap.y" // lalr1.cc:846
+#line 235 "jap.y" // lalr1.cc:847
     {
             kicker->parseState->curClass->isAbstract = true;
         }
-#line 647 "jap.tab.cc" // lalr1.cc:846
+#line 647 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 17:
-#line 237 "jap.y" // lalr1.cc:846
+#line 237 "jap.y" // lalr1.cc:847
     {
         //std::cout << "abstract class found: " << $2.sVal << "\n";
     }
-#line 655 "jap.tab.cc" // lalr1.cc:846
+#line 655 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 18:
-#line 240 "jap.y" // lalr1.cc:846
+#line 240 "jap.y" // lalr1.cc:847
     {
             kicker->parseState->curClass->isFinal = true;
         }
-#line 663 "jap.tab.cc" // lalr1.cc:846
+#line 663 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 19:
-#line 242 "jap.y" // lalr1.cc:846
+#line 242 "jap.y" // lalr1.cc:847
     {
         //std::cout << "final class found: " << $2.sVal << "\n";
     }
-#line 671 "jap.tab.cc" // lalr1.cc:846
+#line 671 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 20:
-#line 247 "jap.y" // lalr1.cc:846
+#line 247 "jap.y" // lalr1.cc:847
     {
 		ego::SClass* curCls = new ego::SClass();
 		
@@ -691,11 +691,11 @@ namespace yy {
 		ego::ClassLoader::registerClass(kicker->parseState->curClass, true);
 		
 	}
-#line 695 "jap.tab.cc" // lalr1.cc:846
+#line 695 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 21:
-#line 265 "jap.y" // lalr1.cc:846
+#line 265 "jap.y" // lalr1.cc:847
     {
         ego::NameWithGenerics nameType (kicker->parseState->curClass->name);
         kicker->parseState->curClass->qualifiedName = nameType;
@@ -704,97 +704,97 @@ namespace yy {
             ego_get_qualified_type<ego::SClass>(&(yystack_[0].value), kicker->parseState->curClass, &kicker->parseState->curClass->qualifiedName);
 		}
 	}
-#line 708 "jap.tab.cc" // lalr1.cc:846
+#line 708 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 22:
-#line 272 "jap.y" // lalr1.cc:846
+#line 272 "jap.y" // lalr1.cc:847
     {
         //TODO: Evaluate the Full Class
     }
-#line 716 "jap.tab.cc" // lalr1.cc:846
+#line 716 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 23:
-#line 277 "jap.y" // lalr1.cc:846
+#line 277 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value);
     }
-#line 724 "jap.tab.cc" // lalr1.cc:846
+#line 724 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 24:
-#line 280 "jap.y" // lalr1.cc:846
+#line 280 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value);
     }
-#line 732 "jap.tab.cc" // lalr1.cc:846
+#line 732 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 25:
-#line 283 "jap.y" // lalr1.cc:846
+#line 283 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value);
     }
-#line 740 "jap.tab.cc" // lalr1.cc:846
+#line 740 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 26:
-#line 289 "jap.y" // lalr1.cc:846
+#line 289 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node(); 
     }
-#line 748 "jap.tab.cc" // lalr1.cc:846
+#line 748 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 27:
-#line 292 "jap.y" // lalr1.cc:846
+#line 292 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[1].value);
     }
-#line 756 "jap.tab.cc" // lalr1.cc:846
+#line 756 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 28:
-#line 298 "jap.y" // lalr1.cc:846
+#line 298 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_DATA_TYPE_FORMAL_HINT_LIST;
 	}
-#line 766 "jap.tab.cc" // lalr1.cc:846
+#line 766 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 29:
-#line 303 "jap.y" // lalr1.cc:846
+#line 303 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[2].value));
 		(yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_DATA_TYPE_FORMAL_HINT_LIST;
 	}
-#line 777 "jap.tab.cc" // lalr1.cc:846
+#line 777 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 30:
-#line 312 "jap.y" // lalr1.cc:846
+#line 312 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = (yystack_[0].value);
 		(yylhs.value).astType = AST_DATA_TYPE_GENERIC_HINT_NAME;
 	}
-#line 786 "jap.tab.cc" // lalr1.cc:846
+#line 786 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 31:
-#line 322 "jap.y" // lalr1.cc:846
+#line 322 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
     }
-#line 794 "jap.tab.cc" // lalr1.cc:846
+#line 794 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 32:
-#line 325 "jap.y" // lalr1.cc:846
+#line 325 "jap.y" // lalr1.cc:847
     {
         
 		ego::SClass* curCls = kicker->parseState->curClass;
@@ -812,27 +812,27 @@ namespace yy {
             //TODO: Evaluate the Parent Class
         }
     }
-#line 816 "jap.tab.cc" // lalr1.cc:846
+#line 816 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 33:
-#line 345 "jap.y" // lalr1.cc:846
+#line 345 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
     }
-#line 824 "jap.tab.cc" // lalr1.cc:846
+#line 824 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 34:
-#line 348 "jap.y" // lalr1.cc:846
+#line 348 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
     }
-#line 832 "jap.tab.cc" // lalr1.cc:846
+#line 832 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 35:
-#line 354 "jap.y" // lalr1.cc:846
+#line 354 "jap.y" // lalr1.cc:847
     {
 		ego::NameWithGenerics parent ((yystack_[1].value).sVal);
         // TODO: check interface exist or not
@@ -843,11 +843,11 @@ namespace yy {
 		
 		kicker->parseState->curClass->implements.push_back(parent);
     }
-#line 847 "jap.tab.cc" // lalr1.cc:846
+#line 847 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 36:
-#line 364 "jap.y" // lalr1.cc:846
+#line 364 "jap.y" // lalr1.cc:847
     {
 		ego::NameWithGenerics parent ((yystack_[1].value).sVal);
 		
@@ -859,19 +859,19 @@ namespace yy {
 		
 		kicker->parseState->curClass->implements.push_back(parent);
     }
-#line 863 "jap.tab.cc" // lalr1.cc:846
+#line 863 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 37:
-#line 378 "jap.y" // lalr1.cc:846
+#line 378 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node(); 
     }
-#line 871 "jap.tab.cc" // lalr1.cc:846
+#line 871 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 39:
-#line 385 "jap.y" // lalr1.cc:846
+#line 385 "jap.y" // lalr1.cc:847
     {
 		//std::cout << "some class property/method found: " << "\n";
 		YYSTYPE p;
@@ -880,89 +880,89 @@ namespace yy {
 		
 		kicker->parseState->lastNodeId = ego_add_to_table(p);
 	}
-#line 884 "jap.tab.cc" // lalr1.cc:846
+#line 884 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 41:
-#line 396 "jap.y" // lalr1.cc:846
+#line 396 "jap.y" // lalr1.cc:847
     {
     }
-#line 891 "jap.tab.cc" // lalr1.cc:846
+#line 891 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 42:
-#line 398 "jap.y" // lalr1.cc:846
+#line 398 "jap.y" // lalr1.cc:847
     {
     }
-#line 898 "jap.tab.cc" // lalr1.cc:846
+#line 898 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 43:
-#line 403 "jap.y" // lalr1.cc:846
+#line 403 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = (yystack_[0].value);
 	}
-#line 906 "jap.tab.cc" // lalr1.cc:846
+#line 906 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 44:
-#line 406 "jap.y" // lalr1.cc:846
+#line 406 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = (yystack_[0].value);
 	}
-#line 914 "jap.tab.cc" // lalr1.cc:846
+#line 914 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 45:
-#line 409 "jap.y" // lalr1.cc:846
+#line 409 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = (yystack_[0].value);
 	}
-#line 922 "jap.tab.cc" // lalr1.cc:846
+#line 922 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 46:
-#line 415 "jap.y" // lalr1.cc:846
+#line 415 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 	}
-#line 930 "jap.tab.cc" // lalr1.cc:846
+#line 930 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 47:
-#line 418 "jap.y" // lalr1.cc:846
+#line 418 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = (yystack_[0].value);
 	}
-#line 938 "jap.tab.cc" // lalr1.cc:846
+#line 938 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 48:
-#line 421 "jap.y" // lalr1.cc:846
+#line 421 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = (yystack_[0].value);
 	}
-#line 946 "jap.tab.cc" // lalr1.cc:846
+#line 946 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 49:
-#line 424 "jap.y" // lalr1.cc:846
+#line 424 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = (yystack_[0].value);
 	}
-#line 954 "jap.tab.cc" // lalr1.cc:846
+#line 954 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 50:
-#line 427 "jap.y" // lalr1.cc:846
+#line 427 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = (yystack_[0].value);
 	}
-#line 962 "jap.tab.cc" // lalr1.cc:846
+#line 962 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 51:
-#line 433 "jap.y" // lalr1.cc:846
+#line 433 "jap.y" // lalr1.cc:847
     {
         //kicker->validator->validate_data_type_name(&$1, false);
         
@@ -972,11 +972,11 @@ namespace yy {
         ego::ClassVariable* var = ego_register_class_variable(&(yystack_[2].value), &(yystack_[0].value), &modifier);
 		
 	}
-#line 976 "jap.tab.cc" // lalr1.cc:846
+#line 976 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 52:
-#line 441 "jap.y" // lalr1.cc:846
+#line 441 "jap.y" // lalr1.cc:847
     {
         if (kicker->parseState->curVar->isConst) {
             if ((yystack_[1].value).sType == token::T_EMPTY) {
@@ -990,11 +990,11 @@ namespace yy {
 		
 		//kicker->validator->check_class_variable(kicker->parseState->curVar);
     }
-#line 994 "jap.tab.cc" // lalr1.cc:846
+#line 994 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 53:
-#line 457 "jap.y" // lalr1.cc:846
+#line 457 "jap.y" // lalr1.cc:847
     {
 
         //kicker->validator->validate_data_type_name(&$1, true);
@@ -1005,21 +1005,21 @@ namespace yy {
         ego::ClassMethod* method = ego_register_class_method(&(yystack_[1].value), &(yystack_[0].value), &modifier);
 		
     }
-#line 1009 "jap.tab.cc" // lalr1.cc:846
+#line 1009 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 54:
-#line 466 "jap.y" // lalr1.cc:846
+#line 466 "jap.y" // lalr1.cc:847
     {
         kicker->parseState->curMethod->body = (yystack_[0].value);
 		
 		//kicker->validator->check_class_method(kicker->parseState->curMethod);
     }
-#line 1019 "jap.tab.cc" // lalr1.cc:846
+#line 1019 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 55:
-#line 474 "jap.y" // lalr1.cc:846
+#line 474 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).astType = AST_METHOD_NO_BODY;
@@ -1028,88 +1028,88 @@ namespace yy {
             ego::throwError(string("Method '" + kicker->parseState->curMethod->name + "' is not declared as 'abstract'"));
         }
     }
-#line 1032 "jap.tab.cc" // lalr1.cc:846
+#line 1032 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 56:
-#line 482 "jap.y" // lalr1.cc:846
+#line 482 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value);
     }
-#line 1040 "jap.tab.cc" // lalr1.cc:846
+#line 1040 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 57:
-#line 487 "jap.y" // lalr1.cc:846
+#line 487 "jap.y" // lalr1.cc:847
     { 
 		(yylhs.value) = (yystack_[0].value); 
 	}
-#line 1048 "jap.tab.cc" // lalr1.cc:846
+#line 1048 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 58:
-#line 490 "jap.y" // lalr1.cc:846
+#line 490 "jap.y" // lalr1.cc:847
     { 
 		(yylhs.value) = (yystack_[0].value); 
         (yylhs.value).astType = AST_DATA_TYPE_VOID;
 	}
-#line 1057 "jap.tab.cc" // lalr1.cc:846
+#line 1057 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 59:
-#line 497 "jap.y" // lalr1.cc:846
+#line 497 "jap.y" // lalr1.cc:847
     { 
 		(yylhs.value) = (yystack_[0].value); 
 	}
-#line 1065 "jap.tab.cc" // lalr1.cc:846
+#line 1065 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 60:
-#line 500 "jap.y" // lalr1.cc:846
+#line 500 "jap.y" // lalr1.cc:847
     { 
 		(yylhs.value) = (yystack_[0].value); 
 		(yylhs.value).astType = AST_DATA_TYPE_INT; 
 	}
-#line 1074 "jap.tab.cc" // lalr1.cc:846
+#line 1074 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 61:
-#line 504 "jap.y" // lalr1.cc:846
+#line 504 "jap.y" // lalr1.cc:847
     { 
 		(yylhs.value) = (yystack_[0].value); 
 		(yylhs.value).astType = AST_DATA_TYPE_FLOAT; 
 	}
-#line 1083 "jap.tab.cc" // lalr1.cc:846
+#line 1083 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 62:
-#line 508 "jap.y" // lalr1.cc:846
+#line 508 "jap.y" // lalr1.cc:847
     { 
 		(yylhs.value) = (yystack_[0].value); 
 		(yylhs.value).astType = AST_DATA_TYPE_BOOL; 
 	}
-#line 1092 "jap.tab.cc" // lalr1.cc:846
+#line 1092 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 63:
-#line 512 "jap.y" // lalr1.cc:846
+#line 512 "jap.y" // lalr1.cc:847
     { 
 		(yylhs.value) = (yystack_[0].value); 
 		(yylhs.value).astType = AST_DATA_TYPE_STRING; 
 	}
-#line 1101 "jap.tab.cc" // lalr1.cc:846
+#line 1101 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 64:
-#line 516 "jap.y" // lalr1.cc:846
+#line 516 "jap.y" // lalr1.cc:847
     { 
 		(yylhs.value) = (yystack_[0].value);
 	}
-#line 1109 "jap.tab.cc" // lalr1.cc:846
+#line 1109 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 65:
-#line 519 "jap.y" // lalr1.cc:846
+#line 519 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = (yystack_[3].value);
 
@@ -1117,11 +1117,11 @@ namespace yy {
 		
 		(yylhs.value).astType = AST_DATA_TYPE_ARRAY; 
 	}
-#line 1121 "jap.tab.cc" // lalr1.cc:846
+#line 1121 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 66:
-#line 526 "jap.y" // lalr1.cc:846
+#line 526 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = (yystack_[3].value);
 		
@@ -1129,125 +1129,125 @@ namespace yy {
 		
 		(yylhs.value).astType = AST_DATA_TYPE_SARRAY; 
 	}
-#line 1133 "jap.tab.cc" // lalr1.cc:846
+#line 1133 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 67:
-#line 536 "jap.y" // lalr1.cc:846
+#line 536 "jap.y" // lalr1.cc:847
     { 
 		(yylhs.value) = (yystack_[0].value); 
 		(yylhs.value).astType = AST_DATA_TYPE_OBJECT; 
 	}
-#line 1142 "jap.tab.cc" // lalr1.cc:846
+#line 1142 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 68:
-#line 540 "jap.y" // lalr1.cc:846
+#line 540 "jap.y" // lalr1.cc:847
     { 
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
 		(yylhs.value).astType = AST_DATA_TYPE_OBJECT_GENERICS; 
 	}
-#line 1153 "jap.tab.cc" // lalr1.cc:846
+#line 1153 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 69:
-#line 549 "jap.y" // lalr1.cc:846
+#line 549 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_DATA_TYPE_ACTUAL_HINT_LIST; 
 	}
-#line 1163 "jap.tab.cc" // lalr1.cc:846
+#line 1163 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 70:
-#line 554 "jap.y" // lalr1.cc:846
+#line 554 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[2].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_DATA_TYPE_ACTUAL_HINT_LIST; 
 	}
-#line 1174 "jap.tab.cc" // lalr1.cc:846
+#line 1174 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 71:
-#line 564 "jap.y" // lalr1.cc:846
+#line 564 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node(); 
     }
-#line 1182 "jap.tab.cc" // lalr1.cc:846
+#line 1182 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 72:
-#line 567 "jap.y" // lalr1.cc:846
+#line 567 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value); 
     }
-#line 1190 "jap.tab.cc" // lalr1.cc:846
+#line 1190 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 73:
-#line 572 "jap.y" // lalr1.cc:846
+#line 572 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 1196 "jap.tab.cc" // lalr1.cc:846
+#line 1196 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 74:
-#line 573 "jap.y" // lalr1.cc:846
+#line 573 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 1202 "jap.tab.cc" // lalr1.cc:846
+#line 1202 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 75:
-#line 577 "jap.y" // lalr1.cc:846
+#line 577 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value); 
         (yylhs.value).astType = AST_INTEGER; 
     }
-#line 1211 "jap.tab.cc" // lalr1.cc:846
+#line 1211 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 76:
-#line 581 "jap.y" // lalr1.cc:846
+#line 581 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value); 
         (yylhs.value).astType = AST_DOUBLE; 
     }
-#line 1220 "jap.tab.cc" // lalr1.cc:846
+#line 1220 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 77:
-#line 585 "jap.y" // lalr1.cc:846
+#line 585 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value); 
         (yylhs.value).astType = AST_BOOLEAN; 
     }
-#line 1229 "jap.tab.cc" // lalr1.cc:846
+#line 1229 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 78:
-#line 589 "jap.y" // lalr1.cc:846
+#line 589 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value); 
         (yylhs.value).astType = AST_STRING; 
     }
-#line 1238 "jap.tab.cc" // lalr1.cc:846
+#line 1238 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 79:
-#line 593 "jap.y" // lalr1.cc:846
+#line 593 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value); 
         (yylhs.value).astType = AST_NULL; 
     }
-#line 1247 "jap.tab.cc" // lalr1.cc:846
+#line 1247 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 80:
-#line 602 "jap.y" // lalr1.cc:846
+#line 602 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value));
@@ -1255,11 +1255,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_STATIC_VARIABLE;
     }
-#line 1259 "jap.tab.cc" // lalr1.cc:846
+#line 1259 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 81:
-#line 609 "jap.y" // lalr1.cc:846
+#line 609 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -1267,34 +1267,34 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_SELF_STATIC_VARIABLE;
     }
-#line 1271 "jap.tab.cc" // lalr1.cc:846
+#line 1271 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 82:
-#line 619 "jap.y" // lalr1.cc:846
+#line 619 "jap.y" // lalr1.cc:847
     { (yylhs.value) = ego_empty_node(); }
-#line 1277 "jap.tab.cc" // lalr1.cc:846
+#line 1277 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 83:
-#line 620 "jap.y" // lalr1.cc:846
+#line 620 "jap.y" // lalr1.cc:847
     {
         // THIS is not needed
         //$$ = $1; 
     }
-#line 1286 "jap.tab.cc" // lalr1.cc:846
+#line 1286 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 84:
-#line 624 "jap.y" // lalr1.cc:846
+#line 624 "jap.y" // lalr1.cc:847
     { 
         //$$ = $1; 
     }
-#line 1294 "jap.tab.cc" // lalr1.cc:846
+#line 1294 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 85:
-#line 630 "jap.y" // lalr1.cc:846
+#line 630 "jap.y" // lalr1.cc:847
     {
         //kicker->validator->validate_data_type_name(&$1, false);
        
@@ -1306,27 +1306,27 @@ namespace yy {
         
         //kicker->validator->check_local_variable(var, varIsObject(&$1));
     }
-#line 1310 "jap.tab.cc" // lalr1.cc:846
+#line 1310 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 86:
-#line 643 "jap.y" // lalr1.cc:846
+#line 643 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[1].value);
     }
-#line 1318 "jap.tab.cc" // lalr1.cc:846
+#line 1318 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 87:
-#line 651 "jap.y" // lalr1.cc:846
+#line 651 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
     }
-#line 1326 "jap.tab.cc" // lalr1.cc:846
+#line 1326 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 88:
-#line 654 "jap.y" // lalr1.cc:846
+#line 654 "jap.y" // lalr1.cc:847
     {
         // xxxxx_stmt_list
         (yylhs.value) = ego_empty_node();
@@ -1335,158 +1335,158 @@ namespace yy {
         (yylhs.value).astType = AST_STATEMENTS;
         
     }
-#line 1339 "jap.tab.cc" // lalr1.cc:846
+#line 1339 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 89:
-#line 664 "jap.y" // lalr1.cc:846
+#line 664 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_VAR_DEFINE_STMT;
         
     }
-#line 1349 "jap.tab.cc" // lalr1.cc:846
+#line 1349 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 90:
-#line 669 "jap.y" // lalr1.cc:846
+#line 669 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         //$$.astType = AST_IF_STMT;
     }
-#line 1358 "jap.tab.cc" // lalr1.cc:846
+#line 1358 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 91:
-#line 673 "jap.y" // lalr1.cc:846
+#line 673 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_WHILE_STMT;
     }
-#line 1367 "jap.tab.cc" // lalr1.cc:846
+#line 1367 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 92:
-#line 677 "jap.y" // lalr1.cc:846
+#line 677 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_DO_WHILE_STMT;
     }
-#line 1376 "jap.tab.cc" // lalr1.cc:846
+#line 1376 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 93:
-#line 681 "jap.y" // lalr1.cc:846
+#line 681 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_SWITCH_STMT;
     }
-#line 1385 "jap.tab.cc" // lalr1.cc:846
+#line 1385 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 94:
-#line 685 "jap.y" // lalr1.cc:846
+#line 685 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_BREAK_STMT;
     }
-#line 1394 "jap.tab.cc" // lalr1.cc:846
+#line 1394 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 95:
-#line 689 "jap.y" // lalr1.cc:846
+#line 689 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_CONTINUE_STMT;
     }
-#line 1403 "jap.tab.cc" // lalr1.cc:846
+#line 1403 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 96:
-#line 693 "jap.y" // lalr1.cc:846
+#line 693 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_TRY_CATCH_STMT;
     }
-#line 1412 "jap.tab.cc" // lalr1.cc:846
+#line 1412 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 97:
-#line 697 "jap.y" // lalr1.cc:846
+#line 697 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_THROW_STMT;
     }
-#line 1421 "jap.tab.cc" // lalr1.cc:846
+#line 1421 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 98:
-#line 701 "jap.y" // lalr1.cc:846
+#line 701 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_ASSIGNMENT_STMT;
     }
-#line 1430 "jap.tab.cc" // lalr1.cc:846
+#line 1430 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 99:
-#line 705 "jap.y" // lalr1.cc:846
+#line 705 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_ECHO_STMT;
     }
-#line 1439 "jap.tab.cc" // lalr1.cc:846
+#line 1439 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 100:
-#line 709 "jap.y" // lalr1.cc:846
+#line 709 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_RETURN_STMT;
     }
-#line 1448 "jap.tab.cc" // lalr1.cc:846
+#line 1448 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 101:
-#line 713 "jap.y" // lalr1.cc:846
+#line 713 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).astType = AST_EXPR_STMT;
     }
-#line 1458 "jap.tab.cc" // lalr1.cc:846
+#line 1458 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 102:
-#line 718 "jap.y" // lalr1.cc:846
+#line 718 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_EMPTY_STMT;
     }
-#line 1467 "jap.tab.cc" // lalr1.cc:846
+#line 1467 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 103:
-#line 724 "jap.y" // lalr1.cc:846
+#line 724 "jap.y" // lalr1.cc:847
     {
         //std::cout << "Many Local Variables defined: " << $3.sVal << "\n";
 		(yylhs.value) = (yystack_[1].value);
 		(yylhs.value).astType = AST_VAR_DEFINE_STMT;
     }
-#line 1477 "jap.tab.cc" // lalr1.cc:846
+#line 1477 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 104:
-#line 733 "jap.y" // lalr1.cc:846
+#line 733 "jap.y" // lalr1.cc:847
     {
         //kicker->validator->validate_data_type_name(&$1, false);
 		kicker->parseState->lastNodeId = ego_add_to_table((yystack_[0].value));
 	}
-#line 1486 "jap.tab.cc" // lalr1.cc:846
+#line 1486 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 105:
-#line 736 "jap.y" // lalr1.cc:846
+#line 736 "jap.y" // lalr1.cc:847
     {
         //std::cout << "Many Local Variables defined: " << $3.sVal << "\n";
 		
@@ -1495,20 +1495,20 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_VAR_DEFINE_EXPR;
     }
-#line 1499 "jap.tab.cc" // lalr1.cc:846
+#line 1499 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 106:
-#line 748 "jap.y" // lalr1.cc:846
+#line 748 "jap.y" // lalr1.cc:847
     {
 		//std::cout << "Local Variable defined: " << $1.sVal << "\n";
 		(yylhs.value) = (yystack_[0].value);
 	}
-#line 1508 "jap.tab.cc" // lalr1.cc:846
+#line 1508 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 107:
-#line 752 "jap.y" // lalr1.cc:846
+#line 752 "jap.y" // lalr1.cc:847
     {
 		//std::cout << "Local Variable defined: " << $1.sVal << "\n";
 		
@@ -1517,11 +1517,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_VAR_DEFINE_MULTIPLE;
 	}
-#line 1521 "jap.tab.cc" // lalr1.cc:846
+#line 1521 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 108:
-#line 764 "jap.y" // lalr1.cc:846
+#line 764 "jap.y" // lalr1.cc:847
     {
 		
 		YYSTYPE curVarType = ego_get_from_table(kicker->parseState->lastNodeId);
@@ -1541,19 +1541,19 @@ namespace yy {
 		
 		//kicker->validator->check_local_variable(var, varIsObject(&curVarType));
 	}
-#line 1545 "jap.tab.cc" // lalr1.cc:846
+#line 1545 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 109:
-#line 786 "jap.y" // lalr1.cc:846
+#line 786 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node(); 
     }
-#line 1553 "jap.tab.cc" // lalr1.cc:846
+#line 1553 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 110:
-#line 789 "jap.y" // lalr1.cc:846
+#line 789 "jap.y" // lalr1.cc:847
     {
         
         (yylhs.value) = ego_empty_node();
@@ -1562,30 +1562,41 @@ namespace yy {
         (yylhs.value).astType = AST_RIGHT_ASSIGNMENT; 
         
     }
-#line 1566 "jap.tab.cc" // lalr1.cc:846
+#line 1566 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 111:
-#line 800 "jap.y" // lalr1.cc:846
+#line 800 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
     }
-#line 1574 "jap.tab.cc" // lalr1.cc:846
+#line 1574 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 112:
-#line 803 "jap.y" // lalr1.cc:846
+#line 803 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op2= ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_IF_ELSE_IF_STMT;
     }
-#line 1585 "jap.tab.cc" // lalr1.cc:846
+#line 1585 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 113:
-#line 809 "jap.y" // lalr1.cc:846
+#line 809 "jap.y" // lalr1.cc:847
+    { 
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op2= ego_add_to_table((yystack_[0].value));
+        (yylhs.value).astType = AST_IF_ELSE_IF_STMT;
+    }
+#line 1596 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 114:
+#line 815 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value));
@@ -1593,31 +1604,31 @@ namespace yy {
         (yylhs.value).op = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_IF_ELSE_IF_ELSE_STMT;
     }
-#line 1597 "jap.tab.cc" // lalr1.cc:846
+#line 1608 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 114:
-#line 818 "jap.y" // lalr1.cc:846
+  case 115:
+#line 824 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_IF_STMT;
     }
-#line 1608 "jap.tab.cc" // lalr1.cc:846
+#line 1619 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 115:
-#line 826 "jap.y" // lalr1.cc:846
+  case 116:
+#line 832 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_ELSE_IF_STMT;
     }
-#line 1617 "jap.tab.cc" // lalr1.cc:846
+#line 1628 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 116:
-#line 830 "jap.y" // lalr1.cc:846
+  case 117:
+#line 836 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
@@ -1625,39 +1636,39 @@ namespace yy {
         (yylhs.value).sType = (yystack_[0].value).sType;
         (yylhs.value).astType = AST_IF_ELSE_IF_STMT;
     }
-#line 1629 "jap.tab.cc" // lalr1.cc:846
+#line 1640 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 117:
-#line 838 "jap.y" // lalr1.cc:846
+  case 118:
+#line 844 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[2].value);
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
     }
-#line 1639 "jap.tab.cc" // lalr1.cc:846
+#line 1650 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 118:
-#line 844 "jap.y" // lalr1.cc:846
+  case 119:
+#line 850 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[1].value);
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_ELSE_STMT;
     }
-#line 1649 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 119:
-#line 851 "jap.y" // lalr1.cc:846
-    {
-        kicker->parseState->loopFound();
-    }
-#line 1657 "jap.tab.cc" // lalr1.cc:846
+#line 1660 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 120:
-#line 853 "jap.y" // lalr1.cc:846
+#line 857 "jap.y" // lalr1.cc:847
+    {
+        kicker->parseState->loopFound();
+    }
+#line 1668 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 121:
+#line 859 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[3].value);
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
@@ -1665,38 +1676,38 @@ namespace yy {
         
         kicker->parseState->loopClosed();
     }
-#line 1669 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 121:
-#line 862 "jap.y" // lalr1.cc:846
-    {
-        kicker->parseState->loopFound();
-    }
-#line 1677 "jap.tab.cc" // lalr1.cc:846
+#line 1680 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 122:
-#line 864 "jap.y" // lalr1.cc:846
+#line 868 "jap.y" // lalr1.cc:847
+    {
+        kicker->parseState->loopFound();
+    }
+#line 1688 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 123:
+#line 870 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[5].value);
         (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
         kicker->parseState->loopClosed();
     }
-#line 1688 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 123:
-#line 872 "jap.y" // lalr1.cc:846
-    {
-        kicker->parseState->switchFound();
-    }
-#line 1696 "jap.tab.cc" // lalr1.cc:846
+#line 1699 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 124:
-#line 874 "jap.y" // lalr1.cc:846
+#line 878 "jap.y" // lalr1.cc:847
+    {
+        kicker->parseState->switchFound();
+    }
+#line 1707 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 125:
+#line 880 "jap.y" // lalr1.cc:847
     {
         kicker->parseState->switchClosed();
         
@@ -1705,46 +1716,46 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_SWITCH_STMT;
     }
-#line 1709 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 125:
-#line 884 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = (yystack_[2].value);
-    }
-#line 1717 "jap.tab.cc" // lalr1.cc:846
+#line 1720 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 126:
-#line 889 "jap.y" // lalr1.cc:846
+#line 890 "jap.y" // lalr1.cc:847
     {
-        (yylhs.value) = (yystack_[0].value);
+        (yylhs.value) = (yystack_[2].value);
     }
-#line 1725 "jap.tab.cc" // lalr1.cc:846
+#line 1728 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 127:
-#line 892 "jap.y" // lalr1.cc:846
+#line 895 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = (yystack_[0].value);
+    }
+#line 1736 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 128:
+#line 898 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_MULTI_CASE_STMT_WITH_BODY;
     }
-#line 1736 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 128:
-#line 900 "jap.y" // lalr1.cc:846
-    {
-        kicker->parseState->caseFound();
-    }
-#line 1744 "jap.tab.cc" // lalr1.cc:846
+#line 1747 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 129:
-#line 902 "jap.y" // lalr1.cc:846
+#line 906 "jap.y" // lalr1.cc:847
+    {
+        kicker->parseState->caseFound();
+    }
+#line 1755 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 130:
+#line 908 "jap.y" // lalr1.cc:847
     {
         // stmt_list includes break statement as well
         kicker->parseState->caseClosed();
@@ -1756,49 +1767,49 @@ namespace yy {
         (yylhs.value).astType = AST_CASE_STMT_WITH_BODY;
         
     }
-#line 1760 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 130:
-#line 915 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = (yystack_[0].value);
-    }
-#line 1768 "jap.tab.cc" // lalr1.cc:846
+#line 1771 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 131:
-#line 918 "jap.y" // lalr1.cc:846
+#line 921 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = (yystack_[0].value);
+    }
+#line 1779 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 132:
+#line 924 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_MULTI_CASE_STMT;
     }
-#line 1779 "jap.tab.cc" // lalr1.cc:846
+#line 1790 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 132:
-#line 926 "jap.y" // lalr1.cc:846
+  case 133:
+#line 932 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[2].value);
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value));
         (yylhs.value).astType = AST_CASE_STMT;
     }
-#line 1789 "jap.tab.cc" // lalr1.cc:846
+#line 1800 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 133:
-#line 931 "jap.y" // lalr1.cc:846
+  case 134:
+#line 937 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[1].value);
         (yylhs.value).astType = AST_DEFAULT_STMT;
     }
-#line 1798 "jap.tab.cc" // lalr1.cc:846
+#line 1809 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 134:
-#line 937 "jap.y" // lalr1.cc:846
+  case 135:
+#line 943 "jap.y" // lalr1.cc:847
     {
     if (!kicker->parseState->inCaseOrLoop()) {
         ego::throwError("Wrong placement of BREAK statement");
@@ -1806,11 +1817,11 @@ namespace yy {
     
     (yylhs.value) = (yystack_[1].value);
 }
-#line 1810 "jap.tab.cc" // lalr1.cc:846
+#line 1821 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 135:
-#line 946 "jap.y" // lalr1.cc:846
+  case 136:
+#line 952 "jap.y" // lalr1.cc:847
     {
         if (!kicker->parseState->inLoop()) {
             ego::throwError("Wrong placement of CONTINUE statement");
@@ -1818,41 +1829,41 @@ namespace yy {
         
         (yylhs.value) = (yystack_[1].value);
     }
-#line 1822 "jap.tab.cc" // lalr1.cc:846
+#line 1833 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 136:
-#line 956 "jap.y" // lalr1.cc:846
+  case 137:
+#line 962 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[3].value);
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op = ego_add_to_table((yystack_[0].value));
     }
-#line 1833 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 137:
-#line 964 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = (yystack_[0].value);
-    }
-#line 1841 "jap.tab.cc" // lalr1.cc:846
+#line 1844 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 138:
-#line 967 "jap.y" // lalr1.cc:846
+#line 970 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = (yystack_[0].value);
+    }
+#line 1852 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 139:
+#line 973 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_MULTI_CATCH_STMT;
     }
-#line 1852 "jap.tab.cc" // lalr1.cc:846
+#line 1863 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 139:
-#line 974 "jap.y" // lalr1.cc:846
+  case 140:
+#line 980 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[6].value);
         (yylhs.value).op1 = ego_add_to_table((yystack_[4].value));
@@ -1860,312 +1871,312 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_CATCH_STMT;
     }
-#line 1864 "jap.tab.cc" // lalr1.cc:846
+#line 1875 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 140:
-#line 982 "jap.y" // lalr1.cc:846
+  case 141:
+#line 988 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[1].value);
         (yylhs.value).op1 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_FINALLY_STMT;
     }
-#line 1874 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 141:
-#line 989 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = (yystack_[2].value);
-        (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
-    }
-#line 1883 "jap.tab.cc" // lalr1.cc:846
+#line 1885 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 142:
-#line 996 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 1897 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 143:
-#line 1005 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 1911 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 144:
-#line 1014 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 1925 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 145:
-#line 1023 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 1939 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 146:
-#line 1032 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 1953 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 147:
-#line 1041 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 1967 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 148:
-#line 1050 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 1981 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 149:
-#line 1059 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 1995 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 150:
-#line 1068 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 2009 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 151:
-#line 1077 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 2023 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 152:
-#line 1086 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 2037 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 153:
-#line 1095 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
-        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
-        (yylhs.value).astType = AST_ASSIGNMENT;
-        
-        //kicker->validator->check_assignment(&$$);
-    }
-#line 2051 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 154:
-#line 1106 "jap.y" // lalr1.cc:846
+#line 995 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[2].value);
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
     }
-#line 2060 "jap.tab.cc" // lalr1.cc:846
+#line 1894 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 143:
+#line 1002 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 1908 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 144:
+#line 1011 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 1922 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 145:
+#line 1020 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 1936 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 146:
+#line 1029 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 1950 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 147:
+#line 1038 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 1964 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 148:
+#line 1047 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 1978 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 149:
+#line 1056 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 1992 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 150:
+#line 1065 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 2006 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 151:
+#line 1074 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 2020 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 152:
+#line 1083 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 2034 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 153:
+#line 1092 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 2048 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 154:
+#line 1101 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[3].value));
+        (yylhs.value).op2 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).op = ego_add_to_table((yystack_[2].value));
+        (yylhs.value).astType = AST_ASSIGNMENT;
+        
+        //kicker->validator->check_assignment(&$$);
+    }
+#line 2062 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 155:
-#line 1113 "jap.y" // lalr1.cc:846
+#line 1112 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = (yystack_[2].value);
+        (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
+    }
+#line 2071 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 156:
+#line 1119 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[1].value);
 
         //kicker->validator->check_return_statement(NULL, kicker->parseState->curMethod);
     }
-#line 2070 "jap.tab.cc" // lalr1.cc:846
+#line 2081 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 156:
-#line 1118 "jap.y" // lalr1.cc:846
+  case 157:
+#line 1124 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[2].value);
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
 
         //kicker->validator->check_return_statement(&$2, kicker->parseState->curMethod);
     }
-#line 2081 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 157:
-#line 1131 "jap.y" // lalr1.cc:846
-    { (yylhs.value) = (yystack_[0].value); }
-#line 2087 "jap.tab.cc" // lalr1.cc:846
+#line 2092 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 158:
-#line 1132 "jap.y" // lalr1.cc:846
+#line 1137 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2093 "jap.tab.cc" // lalr1.cc:846
+#line 2098 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 159:
-#line 1133 "jap.y" // lalr1.cc:846
+#line 1138 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2099 "jap.tab.cc" // lalr1.cc:846
+#line 2104 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 160:
-#line 1134 "jap.y" // lalr1.cc:846
+#line 1139 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2105 "jap.tab.cc" // lalr1.cc:846
+#line 2110 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 161:
-#line 1135 "jap.y" // lalr1.cc:846
+#line 1140 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2111 "jap.tab.cc" // lalr1.cc:846
+#line 2116 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 162:
-#line 1136 "jap.y" // lalr1.cc:846
+#line 1141 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2117 "jap.tab.cc" // lalr1.cc:846
+#line 2122 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 163:
-#line 1137 "jap.y" // lalr1.cc:846
+#line 1142 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2123 "jap.tab.cc" // lalr1.cc:846
+#line 2128 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 164:
-#line 1138 "jap.y" // lalr1.cc:846
+#line 1143 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2129 "jap.tab.cc" // lalr1.cc:846
+#line 2134 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 165:
-#line 1139 "jap.y" // lalr1.cc:846
+#line 1144 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2135 "jap.tab.cc" // lalr1.cc:846
+#line 2140 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 166:
-#line 1142 "jap.y" // lalr1.cc:846
-    { (yylhs.value) = (yystack_[1].value); }
-#line 2141 "jap.tab.cc" // lalr1.cc:846
+#line 1145 "jap.y" // lalr1.cc:847
+    { (yylhs.value) = (yystack_[0].value); }
+#line 2146 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 167:
-#line 1146 "jap.y" // lalr1.cc:846
-    { (yylhs.value) = (yystack_[0].value); }
-#line 2147 "jap.tab.cc" // lalr1.cc:846
+#line 1148 "jap.y" // lalr1.cc:847
+    { (yylhs.value) = (yystack_[1].value); }
+#line 2152 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 168:
-#line 1147 "jap.y" // lalr1.cc:846
+#line 1152 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2153 "jap.tab.cc" // lalr1.cc:846
+#line 2158 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 169:
-#line 1148 "jap.y" // lalr1.cc:846
+#line 1153 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2159 "jap.tab.cc" // lalr1.cc:846
+#line 2164 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 170:
-#line 1149 "jap.y" // lalr1.cc:846
+#line 1154 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2165 "jap.tab.cc" // lalr1.cc:846
+#line 2170 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 171:
-#line 1152 "jap.y" // lalr1.cc:846
+#line 1155 "jap.y" // lalr1.cc:847
+    { (yylhs.value) = (yystack_[0].value); }
+#line 2176 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 172:
+#line 1158 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2173,11 +2184,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_ADD; 
     }
-#line 2177 "jap.tab.cc" // lalr1.cc:846
+#line 2188 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 172:
-#line 1159 "jap.y" // lalr1.cc:846
+  case 173:
+#line 1165 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2185,11 +2196,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_SUB; 
     }
-#line 2189 "jap.tab.cc" // lalr1.cc:846
+#line 2200 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 173:
-#line 1166 "jap.y" // lalr1.cc:846
+  case 174:
+#line 1172 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2197,11 +2208,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_MUL; 
     }
-#line 2201 "jap.tab.cc" // lalr1.cc:846
+#line 2212 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 174:
-#line 1173 "jap.y" // lalr1.cc:846
+  case 175:
+#line 1179 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
          (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2209,11 +2220,11 @@ namespace yy {
          (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
          (yylhs.value).astType = AST_DIV; 
     }
-#line 2213 "jap.tab.cc" // lalr1.cc:846
+#line 2224 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 175:
-#line 1180 "jap.y" // lalr1.cc:846
+  case 176:
+#line 1186 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2221,11 +2232,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_MOD; 
     }
-#line 2225 "jap.tab.cc" // lalr1.cc:846
+#line 2236 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 176:
-#line 1187 "jap.y" // lalr1.cc:846
+  case 177:
+#line 1193 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2233,22 +2244,22 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_CONCAT; 
     }
-#line 2237 "jap.tab.cc" // lalr1.cc:846
+#line 2248 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 177:
-#line 1194 "jap.y" // lalr1.cc:846
+  case 178:
+#line 1200 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value)); 
         (yylhs.value).op = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_INCR_DECR; 
     }
-#line 2248 "jap.tab.cc" // lalr1.cc:846
+#line 2259 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 178:
-#line 1203 "jap.y" // lalr1.cc:846
+  case 179:
+#line 1209 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2256,11 +2267,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_LT; 
     }
-#line 2260 "jap.tab.cc" // lalr1.cc:846
+#line 2271 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 179:
-#line 1210 "jap.y" // lalr1.cc:846
+  case 180:
+#line 1216 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2268,11 +2279,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_GT; 
     }
-#line 2272 "jap.tab.cc" // lalr1.cc:846
+#line 2283 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 180:
-#line 1217 "jap.y" // lalr1.cc:846
+  case 181:
+#line 1223 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2280,11 +2291,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_LT_OR_EQ; 
     }
-#line 2284 "jap.tab.cc" // lalr1.cc:846
+#line 2295 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 181:
-#line 1224 "jap.y" // lalr1.cc:846
+  case 182:
+#line 1230 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2292,11 +2303,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_GT_OR_EQ; 
     }
-#line 2296 "jap.tab.cc" // lalr1.cc:846
+#line 2307 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 182:
-#line 1231 "jap.y" // lalr1.cc:846
+  case 183:
+#line 1237 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2304,11 +2315,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_EQUAL; 
     }
-#line 2308 "jap.tab.cc" // lalr1.cc:846
+#line 2319 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 183:
-#line 1238 "jap.y" // lalr1.cc:846
+  case 184:
+#line 1244 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2316,11 +2327,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_NOT_EQUAL; 
     }
-#line 2320 "jap.tab.cc" // lalr1.cc:846
+#line 2331 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 184:
-#line 1245 "jap.y" // lalr1.cc:846
+  case 185:
+#line 1251 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2328,11 +2339,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_IDENTICAL; 
     }
-#line 2332 "jap.tab.cc" // lalr1.cc:846
+#line 2343 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 185:
-#line 1252 "jap.y" // lalr1.cc:846
+  case 186:
+#line 1258 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2340,11 +2351,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_NOT_IDENTICAL; 
     }
-#line 2344 "jap.tab.cc" // lalr1.cc:846
+#line 2355 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 186:
-#line 1261 "jap.y" // lalr1.cc:846
+  case 187:
+#line 1267 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2352,11 +2363,11 @@ namespace yy {
 		(yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
 		(yylhs.value).astType = AST_AND_AND; 
 	}
-#line 2356 "jap.tab.cc" // lalr1.cc:846
+#line 2367 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 187:
-#line 1268 "jap.y" // lalr1.cc:846
+  case 188:
+#line 1274 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2364,11 +2375,11 @@ namespace yy {
 		(yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
 		(yylhs.value).astType = AST_OR_OR; 
 	}
-#line 2368 "jap.tab.cc" // lalr1.cc:846
+#line 2379 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 188:
-#line 1277 "jap.y" // lalr1.cc:846
+  case 189:
+#line 1283 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2376,11 +2387,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_AND; 
     }
-#line 2380 "jap.tab.cc" // lalr1.cc:846
+#line 2391 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 189:
-#line 1284 "jap.y" // lalr1.cc:846
+  case 190:
+#line 1290 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2388,11 +2399,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_OR; 
     }
-#line 2392 "jap.tab.cc" // lalr1.cc:846
+#line 2403 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 190:
-#line 1291 "jap.y" // lalr1.cc:846
+  case 191:
+#line 1297 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2400,11 +2411,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_XOR; 
     }
-#line 2404 "jap.tab.cc" // lalr1.cc:846
+#line 2415 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 191:
-#line 1298 "jap.y" // lalr1.cc:846
+  case 192:
+#line 1304 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2412,11 +2423,11 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_SHIFT_LEFT; 
     }
-#line 2416 "jap.tab.cc" // lalr1.cc:846
+#line 2427 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 192:
-#line 1305 "jap.y" // lalr1.cc:846
+  case 193:
+#line 1311 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2424,22 +2435,22 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_SHIFT_RIGHT; 
     }
-#line 2428 "jap.tab.cc" // lalr1.cc:846
+#line 2439 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 193:
-#line 1312 "jap.y" // lalr1.cc:846
+  case 194:
+#line 1318 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).op = ego_add_to_table((yystack_[1].value)); 
         (yylhs.value).astType = AST_NEGATION; 
     }
-#line 2439 "jap.tab.cc" // lalr1.cc:846
+#line 2450 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 194:
-#line 1322 "jap.y" // lalr1.cc:846
+  case 195:
+#line 1328 "jap.y" // lalr1.cc:847
     {
         //Do not check Class exists or not here
 		
@@ -2449,112 +2460,112 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_NEW_OBJECT;
     }
-#line 2453 "jap.tab.cc" // lalr1.cc:846
+#line 2464 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 195:
-#line 1335 "jap.y" // lalr1.cc:846
+  case 196:
+#line 1341 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
 		(yylhs.value).astType = AST_ARRAY_OF_DATA_WRAPPER;
 	}
-#line 2463 "jap.tab.cc" // lalr1.cc:846
+#line 2474 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 196:
-#line 1343 "jap.y" // lalr1.cc:846
+  case 197:
+#line 1349 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_ARRAY_OF_DATA;
 	}
-#line 2473 "jap.tab.cc" // lalr1.cc:846
+#line 2484 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 197:
-#line 1348 "jap.y" // lalr1.cc:846
+  case 198:
+#line 1354 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[2].value));
 		(yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_ARRAY_OF_DATA;
 	}
-#line 2484 "jap.tab.cc" // lalr1.cc:846
+#line 2495 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 198:
-#line 1358 "jap.y" // lalr1.cc:846
+  case 199:
+#line 1364 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
 		(yylhs.value).astType = AST_SARRAY_OF_DATA_WRAPPER;
 	}
-#line 2494 "jap.tab.cc" // lalr1.cc:846
+#line 2505 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 199:
-#line 1366 "jap.y" // lalr1.cc:846
+  case 200:
+#line 1372 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_SARRAY_OF_DATA;
 	}
-#line 2504 "jap.tab.cc" // lalr1.cc:846
+#line 2515 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 200:
-#line 1371 "jap.y" // lalr1.cc:846
+  case 201:
+#line 1377 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[2].value));
 		(yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_SARRAY_OF_DATA;
 	}
-#line 2515 "jap.tab.cc" // lalr1.cc:846
+#line 2526 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 201:
-#line 1380 "jap.y" // lalr1.cc:846
+  case 202:
+#line 1386 "jap.y" // lalr1.cc:847
     {
 		(yylhs.value) = ego_empty_node();
 		(yylhs.value).op1 = ego_add_to_table((yystack_[2].value));
 		(yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
 		(yylhs.value).astType = AST_SARRAY_MAP;
 	}
-#line 2526 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 202:
-#line 1394 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value).astType = AST_EMPTY_ARGS;
-    }
-#line 2534 "jap.tab.cc" // lalr1.cc:846
+#line 2537 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 203:
-#line 1397 "jap.y" // lalr1.cc:846
+#line 1400 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value).astType = AST_EMPTY_ARGS;
+    }
+#line 2545 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 204:
+#line 1403 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value)); 
         (yylhs.value).astType = AST_ACTUAL_ARGS;
     }
-#line 2544 "jap.tab.cc" // lalr1.cc:846
+#line 2555 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 204:
-#line 1404 "jap.y" // lalr1.cc:846
+  case 205:
+#line 1410 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_ACTUAL_ARG;
     }
-#line 2554 "jap.tab.cc" // lalr1.cc:846
+#line 2565 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 205:
-#line 1409 "jap.y" // lalr1.cc:846
+  case 206:
+#line 1415 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[2].value)); 
@@ -2562,68 +2573,68 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_ACTUAL_ARG_LIST;
     }
-#line 2566 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 206:
-#line 1417 "jap.y" // lalr1.cc:846
-    { (yylhs.value) = (yystack_[0].value); }
-#line 2572 "jap.tab.cc" // lalr1.cc:846
+#line 2577 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 207:
-#line 1419 "jap.y" // lalr1.cc:846
+#line 1423 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2578 "jap.tab.cc" // lalr1.cc:846
+#line 2583 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 208:
-#line 1420 "jap.y" // lalr1.cc:846
+#line 1425 "jap.y" // lalr1.cc:847
     { (yylhs.value) = (yystack_[0].value); }
-#line 2584 "jap.tab.cc" // lalr1.cc:846
+#line 2589 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 209:
-#line 1425 "jap.y" // lalr1.cc:846
+#line 1426 "jap.y" // lalr1.cc:847
+    { (yylhs.value) = (yystack_[0].value); }
+#line 2595 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 210:
+#line 1431 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_OBJECT_PROPERTY_ACCESS;
     }
-#line 2595 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 210:
-#line 1433 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = (yystack_[0].value);
-    }
-#line 2603 "jap.tab.cc" // lalr1.cc:846
+#line 2606 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 211:
-#line 1436 "jap.y" // lalr1.cc:846
+#line 1439 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = (yystack_[0].value);
+    }
+#line 2614 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 212:
+#line 1442 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_OBJECT_PROPERTY_CHAIN;
     }
-#line 2614 "jap.tab.cc" // lalr1.cc:846
+#line 2625 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 212:
-#line 1444 "jap.y" // lalr1.cc:846
+  case 213:
+#line 1450 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_OBJECT_ATRIBUTE;
     }
-#line 2623 "jap.tab.cc" // lalr1.cc:846
+#line 2634 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 213:
-#line 1448 "jap.y" // lalr1.cc:846
+  case 214:
+#line 1454 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
 
@@ -2631,49 +2642,49 @@ namespace yy {
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_METHOD_CALL;
     }
-#line 2635 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 214:
-#line 1457 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = (yystack_[0].value);
-    }
-#line 2643 "jap.tab.cc" // lalr1.cc:846
+#line 2646 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 215:
-#line 1462 "jap.y" // lalr1.cc:846
-    { 
-        (yylhs.value) = (yystack_[0].value); 
+#line 1463 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = (yystack_[0].value);
     }
-#line 2651 "jap.tab.cc" // lalr1.cc:846
+#line 2654 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 216:
-#line 1465 "jap.y" // lalr1.cc:846
+#line 1468 "jap.y" // lalr1.cc:847
+    { 
+        (yylhs.value) = (yystack_[0].value); 
+    }
+#line 2662 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 217:
+#line 1471 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value)); 
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_STATIC_PROPERTY_CHAIN;
     }
-#line 2662 "jap.tab.cc" // lalr1.cc:846
+#line 2673 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 217:
-#line 1473 "jap.y" // lalr1.cc:846
+  case 218:
+#line 1479 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value)); 
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_STATIC_METHOD_CALL;
     }
-#line 2673 "jap.tab.cc" // lalr1.cc:846
+#line 2684 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 218:
-#line 1482 "jap.y" // lalr1.cc:846
+  case 219:
+#line 1488 "jap.y" // lalr1.cc:847
     {
         // Local variable can be used as left assignment
         // But not this
@@ -2682,11 +2693,11 @@ namespace yy {
         }
         (yylhs.value) = (yystack_[0].value);
     }
-#line 2686 "jap.tab.cc" // lalr1.cc:846
+#line 2697 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 219:
-#line 1490 "jap.y" // lalr1.cc:846
+  case 220:
+#line 1496 "jap.y" // lalr1.cc:847
     {
         if ((yystack_[0].value).astType == AST_METHOD_CALL) {
             ego::throwError("Method call must not be used on Left side assignment");
@@ -2694,20 +2705,20 @@ namespace yy {
         
         (yylhs.value) = (yystack_[0].value);
     }
-#line 2698 "jap.tab.cc" // lalr1.cc:846
+#line 2709 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 220:
-#line 1500 "jap.y" // lalr1.cc:846
+  case 221:
+#line 1506 "jap.y" // lalr1.cc:847
     {
         //std::cout << "Local Variable found\n";
         (yylhs.value) = (yystack_[0].value);
     }
-#line 2707 "jap.tab.cc" // lalr1.cc:846
+#line 2718 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 221:
-#line 1504 "jap.y" // lalr1.cc:846
+  case 222:
+#line 1510 "jap.y" // lalr1.cc:847
     {
 		if (kicker->parseState->curMethod->isStatic) {
             ego::throwError("'this' must not be used in the static method.");
@@ -2715,140 +2726,141 @@ namespace yy {
         //std::cout << "this->object Variable found\n";
         (yylhs.value) = (yystack_[0].value);
     }
-#line 2719 "jap.tab.cc" // lalr1.cc:846
+#line 2730 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 222:
-#line 1511 "jap.y" // lalr1.cc:846
+  case 223:
+#line 1517 "jap.y" // lalr1.cc:847
     {
         //std::cout << "static Variable found\n";
         (yylhs.value) = (yystack_[0].value);
     }
-#line 2728 "jap.tab.cc" // lalr1.cc:846
+#line 2739 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 223:
-#line 1518 "jap.y" // lalr1.cc:846
+  case 224:
+#line 1524 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_LOCAL_VARIABLE; 
     }
-#line 2738 "jap.tab.cc" // lalr1.cc:846
+#line 2749 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 224:
-#line 1523 "jap.y" // lalr1.cc:846
+  case 225:
+#line 1529 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_LOCAL_ARRAY_VARIABLE; 
     }
-#line 2749 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 225:
-#line 1531 "jap.y" // lalr1.cc:846
-    { (yylhs.value) = (yystack_[0].value); }
-#line 2755 "jap.tab.cc" // lalr1.cc:846
+#line 2760 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 226:
-#line 1534 "jap.y" // lalr1.cc:846
+#line 1537 "jap.y" // lalr1.cc:847
+    { (yylhs.value) = (yystack_[0].value); }
+#line 2766 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 227:
+#line 1540 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[0].value)); 
         (yylhs.value).astType = AST_THIS_VARIABLE;
     }
-#line 2765 "jap.tab.cc" // lalr1.cc:846
+#line 2776 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 227:
-#line 1542 "jap.y" // lalr1.cc:846
+  case 228:
+#line 1548 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = (yystack_[0].value);
         (yylhs.value).astType = AST_STATIC_VARIABLE;
     }
-#line 2774 "jap.tab.cc" // lalr1.cc:846
+#line 2785 "jap.tab.cc" // lalr1.cc:847
     break;
 
-  case 228:
-#line 1546 "jap.y" // lalr1.cc:846
+  case 229:
+#line 1552 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_STATIC_ARRAY_VARIABLE;
     }
-#line 2785 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 229:
-#line 1560 "jap.y" // lalr1.cc:846
-    {
-        (yylhs.value) = (yystack_[0].value);
-    }
-#line 2793 "jap.tab.cc" // lalr1.cc:846
+#line 2796 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 230:
-#line 1566 "jap.y" // lalr1.cc:846
+#line 1566 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = (yystack_[0].value);
     }
-#line 2801 "jap.tab.cc" // lalr1.cc:846
+#line 2804 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 231:
-#line 1569 "jap.y" // lalr1.cc:846
+#line 1572 "jap.y" // lalr1.cc:847
+    {
+        (yylhs.value) = (yystack_[0].value);
+    }
+#line 2812 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 232:
+#line 1575 "jap.y" // lalr1.cc:847
     {
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).op2 = ego_add_to_table((yystack_[0].value));
         (yylhs.value).astType = AST_ARRAY_MULTI;
     }
-#line 2812 "jap.tab.cc" // lalr1.cc:846
-    break;
-
-  case 232:
-#line 1578 "jap.y" // lalr1.cc:846
-    { 
-        (yylhs.value) = ego_empty_node();
-        (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
-        (yylhs.value).astType = AST_ARRAY_INDEX_EXPR;
-    }
-#line 2822 "jap.tab.cc" // lalr1.cc:846
+#line 2823 "jap.tab.cc" // lalr1.cc:847
     break;
 
   case 233:
-#line 1583 "jap.y" // lalr1.cc:846
+#line 1584 "jap.y" // lalr1.cc:847
     { 
         (yylhs.value) = ego_empty_node();
         (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
         (yylhs.value).astType = AST_ARRAY_INDEX_EXPR;
     }
-#line 2832 "jap.tab.cc" // lalr1.cc:846
+#line 2833 "jap.tab.cc" // lalr1.cc:847
+    break;
+
+  case 234:
+#line 1589 "jap.y" // lalr1.cc:847
+    { 
+        (yylhs.value) = ego_empty_node();
+        (yylhs.value).op1 = ego_add_to_table((yystack_[1].value));
+        (yylhs.value).astType = AST_ARRAY_INDEX_EXPR;
+    }
+#line 2843 "jap.tab.cc" // lalr1.cc:847
     break;
 
 
-#line 2836 "jap.tab.cc" // lalr1.cc:846
-          default:
-            break;
-          }
-      }
-    catch (const syntax_error& yyexc)
-      {
-        error (yyexc);
-        YYERROR;
-      }
-    YY_SYMBOL_PRINT ("-> $$ =", yylhs);
-    yypop_ (yylen);
-    yylen = 0;
-    YY_STACK_PRINT ();
+#line 2847 "jap.tab.cc" // lalr1.cc:847
+            default:
+              break;
+            }
+        }
+      catch (const syntax_error& yyexc)
+        {
+          error (yyexc);
+          YYERROR;
+        }
+      YY_SYMBOL_PRINT ("-> $$ =", yylhs);
+      yypop_ (yylen);
+      yylen = 0;
+      YY_STACK_PRINT ();
 
-    // Shift the result of the reduction.
-    yypush_ (YY_NULL, yylhs);
+      // Shift the result of the reduction.
+      yypush_ (YY_NULLPTR, yylhs);
+    }
     goto yynewstate;
 
   /*--------------------------------------.
@@ -2973,11 +2985,11 @@ namespace yy {
         // Do not try to display the values of the reclaimed symbols,
         // as their printer might throw an exception.
         if (!yyempty)
-          yy_destroy_ (YY_NULL, yyla);
+          yy_destroy_ (YY_NULLPTR, yyla);
 
         while (1 < yystack_.size ())
           {
-            yy_destroy_ (YY_NULL, yystack_[0]);
+            yy_destroy_ (YY_NULLPTR, yystack_[0]);
             yypop_ ();
           }
         throw;
@@ -2998,54 +3010,54 @@ namespace yy {
   }
 
 
-  const short int parser::yypact_ninf_ = -192;
+  const short int parser::yypact_ninf_ = -194;
 
-  const short int parser::yytable_ninf_ = -220;
+  const short int parser::yytable_ninf_ = -221;
 
   const short int
   parser::yypact_[] =
   {
-      24,   -48,    31,  -192,  -192,  -192,   -27,  -192,    12,    -8,
-    -192,   -48,    -7,    -7,    51,  -192,   -35,  -192,   -13,  -192,
-      57,   -59,  -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,
-     -11,  -192,    11,    54,    81,    42,  -192,  -192,  -192,    71,
-    -192,  -192,  -192,  -192,  -192,  -192,    68,    52,    75,    73,
-    -192,  -192,  -192,  -192,    85,   134,    94,    21,  -192,  -192,
-    -192,    98,  -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,
-      71,    71,    71,    71,  -192,   -48,   112,    47,   198,   200,
-    -192,    48,  -192,   136,   -48,  -192,  -192,  -192,  -192,  -192,
-     188,   128,  -192,  -192,    71,  -192,  -192,   136,   250,  -192,
-     192,  -192,  -192,   -48,   131,  -192,   136,    71,   251,  -192,
-     138,     3,  -192,   161,   137,   201,    71,   -87,  -192,  -192,
-    -192,  -192,  -192,   145,   -26,  -192,  -192,  -192,  -192,   251,
-    -192,  -192,  -192,  -192,  -192,   202,   206,  -192,   210,  -192,
-    -192,  1048,  1048,  1048,   -48,   146,  -192,  -192,  -192,   151,
-     157,  1001,   165,  1048,  -192,  -192,  1048,  -192,   216,  1048,
-     -17,  -192,  -192,   -40,  -192,  -192,   169,  -192,   231,  -192,
-    -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,   421,
-    -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,   229,
-    -192,   191,   522,    32,  -192,   237,  -192,  -192,   442,  -192,
-     -19,  -192,  1153,     1,   172,   165,   165,   146,   146,  -192,
-    -192,  -192,   463,   211,   484,  1107,     2,  -192,  -192,   400,
-     184,    93,   974,  -192,  -192,   237,  -192,  -192,   146,    14,
-    -192,  1048,  1048,  1048,  1048,  1048,  1048,  1048,  1048,  1048,
-    1048,  1048,  1048,  1048,  1048,  1048,  1048,  1048,  1048,  1048,
-    1048,  1048,  -192,   246,   191,  -192,   172,  1048,  1048,  1048,
-    1048,  1048,  1048,  1048,  1048,  1048,  1048,  1048,  1048,  -192,
-    -192,  -192,   191,  -192,  -192,  1048,  -192,  -192,  -192,   232,
-     165,   190,  -192,   193,    61,  -192,  -192,  1048,  1048,  -192,
-    -192,   252,   310,  -192,   189,   237,   199,  -192,  1153,     4,
-    -192,  -192,   165,   165,  -192,  -192,   521,   541,   561,   682,
-     664,   702,   702,   702,   702,   719,   719,   719,   719,   284,
-     284,   208,   208,   208,  -192,  -192,  -192,  -192,  -192,  -192,
-     585,   606,   627,   648,   749,   770,   791,   812,   913,   934,
-     955,   976,  1153,   146,  -192,    87,  -192,   -48,   165,  -192,
-    -192,  1153,  -192,   321,   184,  -192,  -192,  1048,  -192,  -192,
-    -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,
-    -192,  -192,  -192,   215,   240,   309,   -65,  -192,    87,  -192,
-     -28,  -192,  1048,  -192,  -192,  -192,  -192,   317,  -192,  -192,
-    -192,  -192,  -192,   267,  1153,  -192,   295,   212,   -60,   165,
-    -192
+      24,   -48,    53,  -194,  -194,  -194,   -27,  -194,    12,    -8,
+    -194,   -48,   -35,   -35,    51,  -194,   146,  -194,   -62,  -194,
+      57,   -59,  -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,
+     -11,  -194,   -29,   -13,    81,    52,  -194,  -194,  -194,    71,
+    -194,  -194,  -194,  -194,  -194,  -194,    70,    55,   141,    73,
+    -194,  -194,  -194,  -194,    85,   108,    94,    21,  -194,  -194,
+    -194,    37,  -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,
+      71,    71,    71,    71,  -194,   -48,    50,    47,   124,   142,
+    -194,    26,  -194,   101,   -48,  -194,  -194,  -194,  -194,  -194,
+     114,    79,  -194,  -194,    71,  -194,  -194,   101,   197,  -194,
+     155,  -194,  -194,   -48,   107,  -194,   101,    71,   228,  -194,
+     121,     3,  -194,   163,   126,   187,    71,   -87,  -194,  -194,
+    -194,  -194,  -194,   134,   -26,  -194,  -194,  -194,  -194,   228,
+    -194,  -194,  -194,  -194,  -194,   190,   191,  -194,   212,  -194,
+    -194,  1051,  1051,  1051,   -48,   130,  -194,  -194,  -194,   136,
+     137,  1004,   143,  1051,  -194,  -194,  1051,  -194,   196,  1051,
+     -17,  -194,  -194,   -40,  -194,  -194,   145,  -194,    14,  -194,
+    -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,   424,
+    -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,   525,
+    -194,   158,   746,    32,  -194,   211,  -194,  -194,   445,  -194,
+     -19,  -194,  1156,     1,   148,   143,   143,   130,   130,  -194,
+    -194,  -194,   466,   181,   487,  1110,     2,  -194,  -194,   403,
+     150,    95,   977,  -194,  -194,   211,  -194,  -194,   130,   143,
+      14,  -194,  -194,  1051,  1051,  1051,  1051,  1051,  1051,  1051,
+    1051,  1051,  1051,  1051,  1051,  1051,  1051,  1051,  1051,  1051,
+    1051,  1051,  1051,  1051,  -194,   217,   158,  -194,   148,  1051,
+    1051,  1051,  1051,  1051,  1051,  1051,  1051,  1051,  1051,  1051,
+    1051,  -194,  -194,  -194,   158,  -194,  -194,  1051,  -194,  -194,
+    -194,   202,   143,   167,  -194,   169,    76,  -194,  -194,  1051,
+    1051,  -194,  -194,   229,   292,  -194,   171,   211,   172,  -194,
+    1156,     4,  -194,  -194,   143,  -194,  -194,  -194,   524,   544,
+     564,   685,   667,   705,   705,   705,   705,   827,   827,   827,
+     827,   270,   270,   203,   203,   203,  -194,  -194,  -194,  -194,
+    -194,  -194,   588,   609,   630,   651,   752,   773,   794,   815,
+     916,   937,   958,   979,  1156,   130,  -194,   139,  -194,   -48,
+     143,  -194,  -194,  1156,  -194,   296,   150,  -194,  -194,  1051,
+    -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,
+    -194,  -194,  -194,  -194,   192,   106,   294,   -64,  -194,   139,
+    -194,   -28,  -194,  1051,  -194,  -194,  -194,  -194,   295,  -194,
+    -194,  -194,  -194,  -194,   249,  1156,  -194,   298,   194,   -60,
+     143,  -194
   };
 
   const unsigned char
@@ -3065,50 +3077,50 @@ namespace yy {
        0,     0,    83,     0,     0,     0,     0,     0,    75,    76,
       77,    78,    79,     0,     0,    72,    73,    74,    52,    71,
       84,    55,    87,    54,    56,     0,     0,    85,     0,    81,
-      80,     0,     0,     0,     0,     0,   121,   119,   123,     0,
-       0,     0,     0,     0,   226,   102,     0,    86,     0,     0,
-      67,   104,   157,   227,    88,    89,     0,    90,   111,    91,
+      80,     0,     0,     0,     0,     0,   122,   120,   124,     0,
+       0,     0,     0,     0,   227,   102,     0,    86,     0,     0,
+      67,   104,   158,   228,    88,    89,     0,    90,   111,    91,
       92,    93,    94,    95,    96,    97,    98,    99,   100,     0,
-     159,   158,   167,   168,   169,   170,   160,   164,   165,   162,
-     163,   215,     0,   161,   220,   223,   221,   222,     0,   162,
-     161,   193,   196,     0,     0,     0,     0,     0,     0,   134,
-     135,   155,     0,     0,     0,     0,     0,   199,   225,     0,
-       0,     0,     0,   217,   228,   229,   230,   103,     0,   112,
-     115,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+     160,   159,   168,   169,   170,   171,   161,   165,   166,   163,
+     164,   216,     0,   162,   221,   224,   222,   223,     0,   163,
+     162,   194,   197,     0,     0,     0,     0,     0,     0,   135,
+     136,   156,     0,     0,     0,     0,     0,   200,   226,     0,
+       0,     0,     0,   218,   229,   230,   231,   103,     0,     0,
+     113,   116,   112,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,   101,     0,   216,   210,   212,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,   208,
-     207,   177,   209,   224,   154,     0,   195,   194,   114,     0,
-       0,     0,   156,     0,     0,   137,   141,     0,     0,   198,
-     166,     0,   105,   106,     0,   227,     0,   202,   206,     0,
-     204,   231,     0,     0,   116,   113,   187,   186,   189,   190,
-     188,   182,   183,   184,   185,   178,   180,   179,   181,   191,
-     192,   171,   172,   176,   173,   174,   175,   214,   211,   213,
+       0,     0,     0,     0,   101,     0,   217,   211,   213,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,   197,     0,   120,     0,   124,     0,     0,   138,
-     136,   201,   200,   109,     0,   232,   233,     0,   203,   117,
-     118,   142,   143,   144,   145,   146,   147,   148,   149,   150,
-     151,   152,   153,     0,     0,     0,     0,   126,   128,   130,
-       0,   140,     0,   108,   107,   205,   122,     0,   133,   125,
-     127,    87,   131,     0,   110,   132,     0,     0,    94,     0,
-     139
+       0,   209,   208,   178,   210,   225,   155,     0,   196,   195,
+     115,     0,     0,     0,   157,     0,     0,   138,   142,     0,
+       0,   199,   167,     0,   105,   106,     0,   228,     0,   203,
+     207,     0,   205,   232,     0,   119,   117,   114,   188,   187,
+     190,   191,   189,   183,   184,   185,   186,   179,   181,   180,
+     182,   192,   193,   172,   173,   177,   174,   175,   176,   215,
+     212,   214,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,   198,     0,   121,     0,   125,     0,
+       0,   139,   137,   202,   201,   109,     0,   233,   234,     0,
+     204,   118,   143,   144,   145,   146,   147,   148,   149,   150,
+     151,   152,   153,   154,     0,     0,     0,     0,   127,   129,
+     131,     0,   141,     0,   108,   107,   206,   123,     0,   134,
+     126,   128,    87,   132,     0,   110,   133,     0,     0,    94,
+       0,   140
   };
 
   const short int
   parser::yypgoto_[] =
   {
-    -192,  -192,  -192,  -192,    -1,  -192,  -192,  -192,  -192,   326,
-    -192,  -192,   209,  -192,  -192,  -192,   -31,  -192,  -192,  -192,
-    -192,  -192,   187,  -192,  -192,  -192,  -192,  -192,  -192,  -192,
-    -192,  -192,  -192,  -192,   -38,   203,  -192,   214,  -192,  -111,
-    -102,  -192,   228,  -147,   -46,  -192,  -192,  -192,  -192,  -192,
-      -6,  -192,  -192,  -192,  -192,   120,  -192,  -192,  -192,  -192,
-    -192,  -192,  -192,  -192,  -192,   -25,  -192,  -192,   -23,   -44,
-    -192,  -192,  -192,    66,  -192,  -192,  -192,  -192,  -192,   -52,
-    -123,  -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,  -192,
-    -192,    77,  -183,  -192,     9,  -192,  -134,   168,  -191,  -192,
-    -192,  -192,  -192,  -135,  -192,  -192,  -192,  -192,   179,  -192,
-     152
+    -194,  -194,  -194,  -194,    -1,  -194,  -194,  -194,  -194,   302,
+    -194,  -194,   214,  -194,  -194,  -194,   -31,  -194,  -194,  -194,
+    -194,  -194,   213,  -194,  -194,  -194,  -194,  -194,  -194,  -194,
+    -194,  -194,  -194,  -194,   -38,   176,  -194,   195,  -194,  -111,
+    -102,  -194,   209,  -147,   -66,  -194,  -194,  -194,  -194,  -194,
+     -24,  -194,  -194,  -194,  -194,    97,    98,  -194,  -194,  -194,
+    -194,  -194,  -194,  -194,  -194,   -47,  -194,  -194,   -50,   -63,
+    -194,  -194,  -194,    54,  -194,  -194,  -194,  -194,  -194,   -52,
+    -123,  -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,  -194,
+    -194,    43,  -185,  -194,   -18,  -194,  -134,   151,  -193,  -194,
+    -194,  -194,  -194,  -135,  -194,  -194,  -194,  -194,   152,  -194,
+     118
   };
 
   const short int
@@ -3118,12 +3130,12 @@ namespace yy {
       32,    33,    18,    34,    61,    27,    40,    57,    58,    76,
       85,    98,    35,    45,    77,    87,    46,    66,    88,   108,
       89,   104,   133,    90,   110,    60,    81,   114,   125,   162,
-     163,   111,   112,   134,   138,   164,   165,   166,   220,   292,
-     293,   383,   167,   168,   229,   230,   305,   169,   207,   170,
-     206,   171,   208,   346,   376,   377,   391,   378,   379,   172,
-     173,   174,   284,   285,   350,   175,   176,   177,   178,   179,
+     163,   111,   112,   134,   138,   164,   165,   166,   220,   294,
+     295,   384,   167,   168,   230,   231,   232,   169,   207,   170,
+     206,   171,   208,   348,   377,   378,   392,   379,   380,   172,
+     173,   174,   286,   287,   352,   175,   176,   177,   178,   179,
      180,   181,   182,   183,   184,   185,   186,   187,   203,   188,
-     216,   217,   223,   299,   300,   271,   199,   272,   255,   256,
+     216,   217,   223,   301,   302,   273,   199,   274,   257,   258,
      190,   191,   192,   200,   194,   195,   196,   197,   224,   225,
      226
   };
@@ -3131,225 +3143,174 @@ namespace yy {
   const short int
   parser::yytable_[] =
   {
-       6,    59,   126,   193,   189,   213,   275,   288,   116,   357,
-      20,   127,     9,     9,     9,    72,    11,     5,   221,   374,
-     375,   277,   205,     9,  -129,  -129,    73,     1,   269,   270,
-      36,     7,    78,    79,    80,    82,   131,   132,    56,    91,
-    -218,  -218,  -218,  -218,  -218,  -218,  -218,  -218,  -218,  -218,
-    -218,  -218,    96,    94,    19,    74,   101,    19,   278,   279,
-     389,    12,    13,   328,    31,  -129,   102,    14,    49,    56,
-      56,    56,    56,   329,    83,   109,    56,   228,   303,   269,
-     270,   328,    95,    97,   280,   281,   296,   222,   253,   198,
-     201,   202,    49,    56,   136,    14,    10,    30,   393,   212,
-     161,   214,   106,   136,   215,   302,    56,   219,    12,    13,
-     294,    29,     5,    39,    14,    56,    24,    70,    86,   295,
-      50,    51,    52,    53,    54,    55,    72,   289,    25,    26,
-     276,   117,   358,   344,     9,    37,     5,   160,    69,   253,
-      41,    42,    43,    56,    50,    51,    52,    53,    54,    55,
-      41,    42,    43,   283,   348,   359,   360,    62,     5,   118,
-     119,   120,   121,    63,    64,   122,    71,    44,    39,    65,
-     298,   374,   375,    41,    42,    43,     9,    67,    38,   306,
-     307,   308,   309,   310,   311,   312,   313,   314,   315,   316,
+       6,    59,   126,   193,   189,   213,   277,   290,   116,   359,
+      20,   127,     9,     9,     9,    72,    11,     5,   221,   279,
+     375,   376,   205,     9,  -130,  -130,    73,     1,   271,   272,
+      36,    94,    78,    79,    80,    82,   131,   132,    56,    91,
+    -219,  -219,  -219,  -219,  -219,  -219,  -219,  -219,  -219,  -219,
+    -219,  -219,    96,     7,    19,    74,   101,    19,   280,   281,
+      95,   390,    29,   330,    31,  -130,   102,    14,    49,    56,
+      56,    56,    56,   331,    83,   109,    56,   228,   229,   271,
+     272,   330,   305,    97,   282,   283,   298,   222,   255,   198,
+     201,   202,    49,    56,   136,    37,    10,    30,   394,   212,
+     161,   214,   106,   136,   215,   304,    56,   219,    12,    13,
+     296,    38,     5,    39,    14,    56,    24,    70,    86,   297,
+      50,    51,    52,    53,    54,    55,    72,   291,    25,    26,
+     278,   117,   360,    39,     9,   346,     5,   160,    69,   255,
+      71,     9,    75,    56,    50,    51,    52,    53,    54,    55,
+      41,    42,    43,    41,    42,    43,    84,   361,    92,    62,
+       5,   118,   119,   120,   121,    63,    64,   122,   285,   350,
+     300,    65,   118,   119,   120,   121,    93,    44,   122,    99,
+      67,   308,   309,   310,   311,   312,   313,   314,   315,   316,
      317,   318,   319,   320,   321,   322,   323,   324,   325,   326,
-      68,   381,   123,    75,   154,   330,   331,   332,   333,   334,
-     335,   336,   337,   338,   339,   340,   341,   141,    84,   158,
-     373,    22,    23,   342,    47,    48,     5,   118,   119,   120,
-     121,    49,    92,   122,    93,   351,   215,  -219,  -219,  -219,
-    -219,  -219,  -219,  -219,  -219,  -219,  -219,  -219,  -219,   249,
-     250,   251,   400,    99,   100,   103,   142,   105,   107,   113,
-     128,   193,   189,   387,   115,   135,   129,   139,   143,   144,
-     123,   140,   145,   159,   209,     5,   118,   119,   120,   121,
-     210,   218,   122,    50,    51,    52,    53,    54,    55,   132,
-     146,   147,   227,   148,   228,   221,   149,   150,   253,   222,
-     151,   152,   141,   283,   153,   298,   118,   119,   120,   121,
-     291,   327,   122,   343,   345,   354,    49,   353,   355,   123,
-     347,   154,   246,   247,   248,   249,   250,   251,   356,   382,
-     394,   388,   397,   155,   156,   157,   158,   159,   386,   395,
-     399,   142,    28,   137,   130,   396,   380,   204,   384,   304,
-     349,   390,   398,   143,   144,   392,     0,   145,   161,   254,
-       5,   118,   119,   120,   121,   352,   385,   122,    50,    51,
-      52,    53,    54,    55,   273,   146,   147,   301,   148,     0,
-       0,   149,   150,     0,     0,   151,   152,     0,     0,   153,
-       0,     0,     0,     0,     0,   160,     0,     0,     0,     0,
-       0,     0,     0,     0,   123,     0,   154,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,   155,   156,
-       0,   158,   159,   231,   232,   233,   234,   235,   236,   237,
-     238,   239,   240,   241,   242,   243,   244,   245,   246,   247,
-     248,   249,   250,   251,   231,   232,   233,   234,   235,   236,
+     327,   328,   103,   382,   123,   100,   154,   332,   333,   334,
+     335,   336,   337,   338,   339,   340,   341,   342,   343,   141,
+     105,   158,   374,   375,   376,   344,    22,    23,     5,   118,
+     119,   120,   121,    49,   107,   122,   113,   353,   215,    41,
+      42,    43,    12,    13,   251,   252,   253,   115,    14,   128,
+      47,    48,   129,   401,   135,   139,   140,   159,   142,   209,
+     210,   218,   193,   189,   388,   255,    68,   132,   227,   221,
+     143,   144,   123,   285,   145,   222,   293,     5,   118,   119,
+     120,   121,   329,   345,   122,    50,    51,    52,    53,    54,
+      55,   347,   146,   147,   355,   148,   349,   356,   149,   150,
+     357,   358,   151,   152,   383,   141,   153,   300,   248,   249,
+     250,   251,   252,   253,   398,   387,   389,   396,    28,    49,
+     204,   123,   400,   154,   137,   130,   397,   306,   307,   393,
+     391,   395,   385,   354,   399,   155,   156,   157,   158,   159,
+     351,   386,   256,   303,   142,     0,     0,   275,   381,     0,
+       0,     0,     0,     0,     0,     0,   143,   144,     0,   161,
+     145,     0,     0,     5,   118,   119,   120,   121,     0,     0,
+     122,    50,    51,    52,    53,    54,    55,     0,   146,   147,
+       0,   148,     0,     0,   149,   150,     0,     0,   151,   152,
+       0,     0,   153,     0,     0,     0,   160,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,   123,     0,   154,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,   155,   156,     0,   158,   159,   233,   234,   235,   236,
      237,   238,   239,   240,   241,   242,   243,   244,   245,   246,
-     247,   248,   249,   250,   251,   231,   232,   233,   234,   235,
+     247,   248,   249,   250,   251,   252,   253,   233,   234,   235,
      236,   237,   238,   239,   240,   241,   242,   243,   244,   245,
-     246,   247,   248,   249,   250,   251,   231,   232,   233,   234,
+     246,   247,   248,   249,   250,   251,   252,   253,   233,   234,
      235,   236,   237,   238,   239,   240,   241,   242,   243,   244,
-     245,   246,   247,   248,   249,   250,   251,   231,   232,   233,
+     245,   246,   247,   248,   249,   250,   251,   252,   253,   233,
      234,   235,   236,   237,   238,   239,   240,   241,   242,   243,
-     244,   245,   246,   247,   248,   249,   250,   251,   290,     0,
-     257,   258,   259,   260,   261,   262,   263,   264,   265,   266,
-     267,   268,     0,     0,   252,   232,   233,   234,   235,   236,
-     237,   238,   239,   240,   241,   242,   243,   244,   245,   246,
-     247,   248,   249,   250,   251,   274,   233,   234,   235,   236,
-     237,   238,   239,   240,   241,   242,   243,   244,   245,   246,
-     247,   248,   249,   250,   251,     0,   282,   234,   235,   236,
-     237,   238,   239,   240,   241,   242,   243,   244,   245,   246,
-     247,   248,   249,   250,   251,     0,     0,   286,   231,   232,
+     244,   245,   246,   247,   248,   249,   250,   251,   252,   253,
      233,   234,   235,   236,   237,   238,   239,   240,   241,   242,
-     243,   244,   245,   246,   247,   248,   249,   250,   251,   231,
-     232,   233,   234,   235,   236,   237,   238,   239,   240,   241,
+     243,   244,   245,   246,   247,   248,   249,   250,   251,   252,
+     253,   292,     0,  -220,  -220,  -220,  -220,  -220,  -220,  -220,
+    -220,  -220,  -220,  -220,  -220,     0,     0,   254,   234,   235,
+     236,   237,   238,   239,   240,   241,   242,   243,   244,   245,
+     246,   247,   248,   249,   250,   251,   252,   253,   276,   235,
+     236,   237,   238,   239,   240,   241,   242,   243,   244,   245,
+     246,   247,   248,   249,   250,   251,   252,   253,     0,   284,
+     236,   237,   238,   239,   240,   241,   242,   243,   244,   245,
+     246,   247,   248,   249,   250,   251,   252,   253,     0,     0,
+     288,   233,   234,   235,   236,   237,   238,   239,   240,   241,
      242,   243,   244,   245,   246,   247,   248,   249,   250,   251,
-     231,   232,   233,   234,   235,   236,   237,   238,   239,   240,
+     252,   253,   233,   234,   235,   236,   237,   238,   239,   240,
      241,   242,   243,   244,   245,   246,   247,   248,   249,   250,
-     251,   231,   232,   233,   234,   235,   236,   237,   238,   239,
+     251,   252,   253,   233,   234,   235,   236,   237,   238,   239,
      240,   241,   242,   243,   244,   245,   246,   247,   248,   249,
-     250,   251,   236,   237,   238,   239,   240,   241,   242,   243,
-     244,   245,   246,   247,   248,   249,   250,   251,   361,   235,
-     236,   237,   238,   239,   240,   241,   242,   243,   244,   245,
-     246,   247,   248,   249,   250,   251,     0,     0,     0,   362,
-    -220,  -220,  -220,  -220,   240,   241,   242,   243,   244,   245,
-     246,   247,   248,   249,   250,   251,     0,     0,     0,     0,
-     363,  -220,  -220,  -220,  -220,   244,   245,   246,   247,   248,
-     249,   250,   251,     0,     0,     0,     0,     0,     0,     0,
-       0,   364,   231,   232,   233,   234,   235,   236,   237,   238,
+     250,   251,   252,   253,   233,   234,   235,   236,   237,   238,
      239,   240,   241,   242,   243,   244,   245,   246,   247,   248,
-     249,   250,   251,   231,   232,   233,   234,   235,   236,   237,
+     249,   250,   251,   252,   253,   238,   239,   240,   241,   242,
+     243,   244,   245,   246,   247,   248,   249,   250,   251,   252,
+     253,   362,   237,   238,   239,   240,   241,   242,   243,   244,
+     245,   246,   247,   248,   249,   250,   251,   252,   253,     0,
+       0,     0,   363,  -221,  -221,  -221,  -221,   242,   243,   244,
+     245,   246,   247,   248,   249,   250,   251,   252,   253,     0,
+       0,     0,     0,   364,   259,   260,   261,   262,   263,   264,
+     265,   266,   267,   268,   269,   270,     0,     0,     0,     0,
+       0,     0,     0,     0,   365,   233,   234,   235,   236,   237,
      238,   239,   240,   241,   242,   243,   244,   245,   246,   247,
-     248,   249,   250,   251,   231,   232,   233,   234,   235,   236,
+     248,   249,   250,   251,   252,   253,   233,   234,   235,   236,
      237,   238,   239,   240,   241,   242,   243,   244,   245,   246,
-     247,   248,   249,   250,   251,   231,   232,   233,   234,   235,
+     247,   248,   249,   250,   251,   252,   253,   233,   234,   235,
      236,   237,   238,   239,   240,   241,   242,   243,   244,   245,
-     246,   247,   248,   249,   250,   251,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,   365,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,   366,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,   367,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,   368,   231,   232,   233,   234,
+     246,   247,   248,   249,   250,   251,   252,   253,   233,   234,
      235,   236,   237,   238,   239,   240,   241,   242,   243,   244,
-     245,   246,   247,   248,   249,   250,   251,   231,   232,   233,
+     245,   246,   247,   248,   249,   250,   251,   252,   253,  -221,
+    -221,  -221,  -221,   246,   247,   248,   249,   250,   251,   252,
+     253,     0,     0,     0,     0,   366,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,   367,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,   368,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,   369,   233,
      234,   235,   236,   237,   238,   239,   240,   241,   242,   243,
-     244,   245,   246,   247,   248,   249,   250,   251,   231,   232,
+     244,   245,   246,   247,   248,   249,   250,   251,   252,   253,
      233,   234,   235,   236,   237,   238,   239,   240,   241,   242,
-     243,   244,   245,   246,   247,   248,   249,   250,   251,   231,
-     232,   233,   234,   235,   236,   237,   238,   239,   240,   241,
+     243,   244,   245,   246,   247,   248,   249,   250,   251,   252,
+     253,   233,   234,   235,   236,   237,   238,   239,   240,   241,
      242,   243,   244,   245,   246,   247,   248,   249,   250,   251,
-     142,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,   143,   144,     0,     0,   369,     0,     0,     5,
-     118,   119,   120,   121,     0,     0,   122,   142,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,   370,     0,   143,
-     144,     0,     0,     0,     0,     0,     5,   118,   119,   120,
-     121,     0,     0,   122,     0,     0,     0,     0,   371,     0,
-       0,     0,     0,   123,     0,   154,     0,     0,     0,     0,
-       0,     0,     0,     0,   142,     0,     0,     0,   156,   372,
-     158,   159,   297,     0,     0,     0,   143,   144,     0,     0,
-     123,     0,   154,     5,   118,   119,   120,   121,     0,     0,
-     122,     0,     0,     0,   211,   156,     0,   158,   159,   287,
-     231,   232,   233,   234,   235,   236,   237,   238,   239,   240,
+     252,   253,   233,   234,   235,   236,   237,   238,   239,   240,
      241,   242,   243,   244,   245,   246,   247,   248,   249,   250,
-     251,     0,     0,     0,     0,     0,     0,   123,     0,   154,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,   156,     0,   158,   159,   231,   232,   233,   234,
-     235,   236,   237,   238,   239,   240,   241,   242,   243,   244,
-     245,   246,   247,   248,   249,   250,   251
+     251,   252,   253,   142,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,   143,   144,     0,     0,   370,
+       0,     0,     5,   118,   119,   120,   121,     0,     0,   122,
+     142,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+     371,     0,   143,   144,     0,     0,     0,     0,     0,     5,
+     118,   119,   120,   121,     0,     0,   122,     0,     0,     0,
+       0,   372,     0,     0,     0,     0,   123,     0,   154,     0,
+       0,     0,     0,     0,     0,     0,     0,   142,     0,     0,
+       0,   156,   373,   158,   159,   299,     0,     0,     0,   143,
+     144,     0,     0,   123,     0,   154,     5,   118,   119,   120,
+     121,     0,     0,   122,     0,     0,     0,   211,   156,     0,
+     158,   159,   289,   233,   234,   235,   236,   237,   238,   239,
+     240,   241,   242,   243,   244,   245,   246,   247,   248,   249,
+     250,   251,   252,   253,     0,     0,     0,     0,     0,     0,
+     123,     0,   154,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,   156,     0,   158,   159,   233,
+     234,   235,   236,   237,   238,   239,   240,   241,   242,   243,
+     244,   245,   246,   247,   248,   249,   250,   251,   252,   253
   };
 
   const short int
   parser::yycheck_[] =
   {
        1,    39,   113,   138,   138,   152,     5,     5,     5,     5,
-      11,   113,    40,    40,    40,    32,     4,    65,    58,    84,
-      85,   204,   145,    40,    84,    85,     5,     3,    47,    48,
-      41,     0,    70,    71,    72,    73,   123,   124,    39,    77,
+      11,   113,    40,    40,    40,    32,     4,    65,    58,   204,
+      84,    85,   145,    40,    84,    85,     5,     3,    47,    48,
+      41,     5,    70,    71,    72,    73,   123,   124,    39,    77,
        8,     9,    10,    11,    12,    13,    14,    15,    16,    17,
-      18,    19,    83,     5,    65,    34,    94,    65,   205,   206,
-     125,    96,    97,   254,   123,   125,    97,   102,    21,    70,
-      71,    72,    73,   256,    75,   106,    77,    63,    64,    47,
-      48,   272,    34,    84,   207,   208,   221,   127,   107,   141,
-     142,   143,    21,    94,   120,   102,   123,    40,   126,   151,
+      18,    19,    83,     0,    65,    34,    94,    65,   205,   206,
+      34,   125,   124,   256,   123,   125,    97,   102,    21,    70,
+      71,    72,    73,   258,    75,   106,    77,    63,    64,    47,
+      48,   274,   229,    84,   207,   208,   221,   127,   107,   141,
+     142,   143,    21,    94,   120,   124,   123,    40,   126,   151,
      138,   153,   103,   120,   156,   228,   107,   159,    96,    97,
      221,   124,    65,    32,   102,   116,    65,    32,    71,   221,
       73,    74,    75,    76,    77,    78,    32,   125,    77,    78,
-     129,   128,   128,   280,    40,   124,    65,   138,    65,   107,
-      98,    99,   100,   144,    73,    74,    75,    76,    77,    78,
-      98,    99,   100,    92,    93,   302,   303,    89,    65,    66,
-      67,    68,    69,    95,    96,    72,    32,   125,    32,   101,
-     222,    84,    85,    98,    99,   100,    40,   125,   124,   231,
-     232,   233,   234,   235,   236,   237,   238,   239,   240,   241,
+     129,   128,   128,    32,    40,   282,    65,   138,    65,   107,
+      32,    40,   105,   144,    73,    74,    75,    76,    77,    78,
+      98,    99,   100,    98,    99,   100,   106,   304,    34,    89,
+      65,    66,    67,    68,    69,    95,    96,    72,    92,    93,
+     222,   101,    66,    67,    68,    69,    34,   125,    72,    65,
+     125,   233,   234,   235,   236,   237,   238,   239,   240,   241,
      242,   243,   244,   245,   246,   247,   248,   249,   250,   251,
-     125,   348,   109,   105,   111,   257,   258,   259,   260,   261,
-     262,   263,   264,   265,   266,   267,   268,     7,   106,   126,
-     343,    12,    13,   275,    37,    38,    65,    66,    67,    68,
-      69,    21,    34,    72,    34,   287,   288,     8,     9,    10,
-      11,    12,    13,    14,    15,    16,    17,    18,    19,    41,
-      42,    43,   399,    65,   126,     5,    46,    65,   127,     8,
-     123,   396,   396,   374,   126,   120,    65,    65,    58,    59,
-     109,    65,    62,   127,   123,    65,    66,    67,    68,    69,
-     123,    65,    72,    73,    74,    75,    76,    77,    78,   124,
-      80,    81,   123,    83,    63,    58,    86,    87,   107,   127,
-      90,    91,     7,    92,    94,   357,    66,    67,    68,    69,
-     126,    65,    72,    81,   124,     5,    21,    65,   129,   109,
-     127,   111,    38,    39,    40,    41,    42,    43,   129,     8,
-     382,    22,    65,   123,   124,   125,   126,   127,   123,    22,
-     128,    46,    16,   129,   116,   391,   347,   144,   354,   229,
-     284,   376,   396,    58,    59,   378,    -1,    62,   396,   191,
-      65,    66,    67,    68,    69,   288,   357,    72,    73,    74,
-      75,    76,    77,    78,   195,    80,    81,   225,    83,    -1,
-      -1,    86,    87,    -1,    -1,    90,    91,    -1,    -1,    94,
-      -1,    -1,    -1,    -1,    -1,   396,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,   109,    -1,   111,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,   123,   124,
-      -1,   126,   127,    23,    24,    25,    26,    27,    28,    29,
-      30,    31,    32,    33,    34,    35,    36,    37,    38,    39,
-      40,    41,    42,    43,    23,    24,    25,    26,    27,    28,
-      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
-      39,    40,    41,    42,    43,    23,    24,    25,    26,    27,
-      28,    29,    30,    31,    32,    33,    34,    35,    36,    37,
-      38,    39,    40,    41,    42,    43,    23,    24,    25,    26,
-      27,    28,    29,    30,    31,    32,    33,    34,    35,    36,
-      37,    38,    39,    40,    41,    42,    43,    23,    24,    25,
-      26,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    41,    42,    43,   128,    -1,
-       8,     9,    10,    11,    12,    13,    14,    15,    16,    17,
-      18,    19,    -1,    -1,   123,    24,    25,    26,    27,    28,
-      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
-      39,    40,    41,    42,    43,   123,    25,    26,    27,    28,
-      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
-      39,    40,    41,    42,    43,    -1,   123,    26,    27,    28,
-      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
-      39,    40,    41,    42,    43,    -1,    -1,   123,    23,    24,
-      25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38,    39,    40,    41,    42,    43,    23,
-      24,    25,    26,    27,    28,    29,    30,    31,    32,    33,
-      34,    35,    36,    37,    38,    39,    40,    41,    42,    43,
-      23,    24,    25,    26,    27,    28,    29,    30,    31,    32,
-      33,    34,    35,    36,    37,    38,    39,    40,    41,    42,
-      43,    23,    24,    25,    26,    27,    28,    29,    30,    31,
-      32,    33,    34,    35,    36,    37,    38,    39,    40,    41,
-      42,    43,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    41,    42,    43,   123,    27,
-      28,    29,    30,    31,    32,    33,    34,    35,    36,    37,
-      38,    39,    40,    41,    42,    43,    -1,    -1,    -1,   123,
-      28,    29,    30,    31,    32,    33,    34,    35,    36,    37,
-      38,    39,    40,    41,    42,    43,    -1,    -1,    -1,    -1,
-     123,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      41,    42,    43,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,   123,    23,    24,    25,    26,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      41,    42,    43,    23,    24,    25,    26,    27,    28,    29,
-      30,    31,    32,    33,    34,    35,    36,    37,    38,    39,
-      40,    41,    42,    43,    23,    24,    25,    26,    27,    28,
-      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
-      39,    40,    41,    42,    43,    23,    24,    25,    26,    27,
-      28,    29,    30,    31,    32,    33,    34,    35,    36,    37,
-      38,    39,    40,    41,    42,    43,    -1,    -1,    -1,    -1,
+     252,   253,     5,   350,   109,   126,   111,   259,   260,   261,
+     262,   263,   264,   265,   266,   267,   268,   269,   270,     7,
+      65,   126,   345,    84,    85,   277,    12,    13,    65,    66,
+      67,    68,    69,    21,   127,    72,     8,   289,   290,    98,
+      99,   100,    96,    97,    41,    42,    43,   126,   102,   123,
+      37,    38,    65,   400,   120,    65,    65,   127,    46,   123,
+     123,    65,   397,   397,   375,   107,   125,   124,   123,    58,
+      58,    59,   109,    92,    62,   127,   126,    65,    66,    67,
+      68,    69,    65,    81,    72,    73,    74,    75,    76,    77,
+      78,   124,    80,    81,    65,    83,   127,     5,    86,    87,
+     129,   129,    90,    91,     8,     7,    94,   359,    38,    39,
+      40,    41,    42,    43,    65,   123,    22,    22,    16,    21,
+     144,   109,   128,   111,   129,   116,   392,   230,   230,   379,
+     377,   383,   356,   290,   397,   123,   124,   125,   126,   127,
+     286,   359,   191,   225,    46,    -1,    -1,   195,   349,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    58,    59,    -1,   397,
+      62,    -1,    -1,    65,    66,    67,    68,    69,    -1,    -1,
+      72,    73,    74,    75,    76,    77,    78,    -1,    80,    81,
+      -1,    83,    -1,    -1,    86,    87,    -1,    -1,    90,    91,
+      -1,    -1,    94,    -1,    -1,    -1,   397,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,   109,    -1,   111,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,   123,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,   123,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,   123,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,   123,    23,    24,    25,    26,
+      -1,   123,   124,    -1,   126,   127,    23,    24,    25,    26,
       27,    28,    29,    30,    31,    32,    33,    34,    35,    36,
       37,    38,    39,    40,    41,    42,    43,    23,    24,    25,
       26,    27,    28,    29,    30,    31,    32,    33,    34,    35,
@@ -3358,24 +3319,75 @@ namespace yy {
       35,    36,    37,    38,    39,    40,    41,    42,    43,    23,
       24,    25,    26,    27,    28,    29,    30,    31,    32,    33,
       34,    35,    36,    37,    38,    39,    40,    41,    42,    43,
-      46,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    58,    59,    -1,    -1,   123,    -1,    -1,    65,
-      66,    67,    68,    69,    -1,    -1,    72,    46,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,   123,    -1,    58,
-      59,    -1,    -1,    -1,    -1,    -1,    65,    66,    67,    68,
-      69,    -1,    -1,    72,    -1,    -1,    -1,    -1,   123,    -1,
-      -1,    -1,    -1,   109,    -1,   111,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    46,    -1,    -1,    -1,   124,   123,
-     126,   127,   128,    -1,    -1,    -1,    58,    59,    -1,    -1,
-     109,    -1,   111,    65,    66,    67,    68,    69,    -1,    -1,
-      72,    -1,    -1,    -1,   123,   124,    -1,   126,   127,    22,
       23,    24,    25,    26,    27,    28,    29,    30,    31,    32,
       33,    34,    35,    36,    37,    38,    39,    40,    41,    42,
-      43,    -1,    -1,    -1,    -1,    -1,    -1,   109,    -1,   111,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,   124,    -1,   126,   127,    23,    24,    25,    26,
+      43,   128,    -1,     8,     9,    10,    11,    12,    13,    14,
+      15,    16,    17,    18,    19,    -1,    -1,   123,    24,    25,
+      26,    27,    28,    29,    30,    31,    32,    33,    34,    35,
+      36,    37,    38,    39,    40,    41,    42,    43,   123,    25,
+      26,    27,    28,    29,    30,    31,    32,    33,    34,    35,
+      36,    37,    38,    39,    40,    41,    42,    43,    -1,   123,
+      26,    27,    28,    29,    30,    31,    32,    33,    34,    35,
+      36,    37,    38,    39,    40,    41,    42,    43,    -1,    -1,
+     123,    23,    24,    25,    26,    27,    28,    29,    30,    31,
+      32,    33,    34,    35,    36,    37,    38,    39,    40,    41,
+      42,    43,    23,    24,    25,    26,    27,    28,    29,    30,
+      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
+      41,    42,    43,    23,    24,    25,    26,    27,    28,    29,
+      30,    31,    32,    33,    34,    35,    36,    37,    38,    39,
+      40,    41,    42,    43,    23,    24,    25,    26,    27,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    41,    42,    43,    28,    29,    30,    31,    32,
+      33,    34,    35,    36,    37,    38,    39,    40,    41,    42,
+      43,   123,    27,    28,    29,    30,    31,    32,    33,    34,
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    -1,
+      -1,    -1,   123,    28,    29,    30,    31,    32,    33,    34,
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    -1,
+      -1,    -1,    -1,   123,     8,     9,    10,    11,    12,    13,
+      14,    15,    16,    17,    18,    19,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,   123,    23,    24,    25,    26,    27,
+      28,    29,    30,    31,    32,    33,    34,    35,    36,    37,
+      38,    39,    40,    41,    42,    43,    23,    24,    25,    26,
       27,    28,    29,    30,    31,    32,    33,    34,    35,    36,
-      37,    38,    39,    40,    41,    42,    43
+      37,    38,    39,    40,    41,    42,    43,    23,    24,    25,
+      26,    27,    28,    29,    30,    31,    32,    33,    34,    35,
+      36,    37,    38,    39,    40,    41,    42,    43,    23,    24,
+      25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    32,
+      33,    34,    35,    36,    37,    38,    39,    40,    41,    42,
+      43,    -1,    -1,    -1,    -1,   123,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,   123,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,   123,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,   123,    23,
+      24,    25,    26,    27,    28,    29,    30,    31,    32,    33,
+      34,    35,    36,    37,    38,    39,    40,    41,    42,    43,
+      23,    24,    25,    26,    27,    28,    29,    30,    31,    32,
+      33,    34,    35,    36,    37,    38,    39,    40,    41,    42,
+      43,    23,    24,    25,    26,    27,    28,    29,    30,    31,
+      32,    33,    34,    35,    36,    37,    38,    39,    40,    41,
+      42,    43,    23,    24,    25,    26,    27,    28,    29,    30,
+      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
+      41,    42,    43,    46,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    58,    59,    -1,    -1,   123,
+      -1,    -1,    65,    66,    67,    68,    69,    -1,    -1,    72,
+      46,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+     123,    -1,    58,    59,    -1,    -1,    -1,    -1,    -1,    65,
+      66,    67,    68,    69,    -1,    -1,    72,    -1,    -1,    -1,
+      -1,   123,    -1,    -1,    -1,    -1,   109,    -1,   111,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    46,    -1,    -1,
+      -1,   124,   123,   126,   127,   128,    -1,    -1,    -1,    58,
+      59,    -1,    -1,   109,    -1,   111,    65,    66,    67,    68,
+      69,    -1,    -1,    72,    -1,    -1,    -1,   123,   124,    -1,
+     126,   127,    22,    23,    24,    25,    26,    27,    28,    29,
+      30,    31,    32,    33,    34,    35,    36,    37,    38,    39,
+      40,    41,    42,    43,    -1,    -1,    -1,    -1,    -1,    -1,
+     109,    -1,   111,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,   124,    -1,   126,   127,    23,
+      24,    25,    26,    27,    28,    29,    30,    31,    32,    33,
+      34,    35,    36,    37,    38,    39,    40,    41,    42,    43
   };
 
   const unsigned char
@@ -3403,25 +3415,25 @@ namespace yy {
      230,   231,   232,   233,   234,   235,   236,   237,   209,   226,
      233,   209,   209,   218,   165,   210,   190,   188,   192,   123,
      123,   123,   209,   173,   209,   209,   220,   221,    65,   209,
-     178,    58,   127,   222,   238,   239,   240,   123,    63,   184,
-     185,    23,    24,    25,    26,    27,    28,    29,    30,    31,
-      32,    33,    34,    35,    36,    37,    38,    39,    40,    41,
-      42,    43,   123,   107,   227,   228,   229,     8,     9,    10,
-      11,    12,    13,    14,    15,    16,    17,    18,    19,    47,
-      48,   225,   227,   238,   123,     5,   129,   222,   173,   173,
-     210,   210,   123,    92,   202,   203,   123,    22,     5,   125,
-     128,   126,   179,   180,   169,   170,   233,   128,   209,   223,
-     224,   240,   210,    64,   185,   186,   209,   209,   209,   209,
+     178,    58,   127,   222,   238,   239,   240,   123,    63,    64,
+     184,   185,   186,    23,    24,    25,    26,    27,    28,    29,
+      30,    31,    32,    33,    34,    35,    36,    37,    38,    39,
+      40,    41,    42,    43,   123,   107,   227,   228,   229,     8,
+       9,    10,    11,    12,    13,    14,    15,    16,    17,    18,
+      19,    47,    48,   225,   227,   238,   123,     5,   129,   222,
+     173,   173,   210,   210,   123,    92,   202,   203,   123,    22,
+       5,   125,   128,   126,   179,   180,   169,   170,   233,   128,
+     209,   223,   224,   240,   210,   173,   185,   186,   209,   209,
      209,   209,   209,   209,   209,   209,   209,   209,   209,   209,
-     209,   209,   209,   209,   209,   209,   209,    65,   228,   222,
-     209,   209,   209,   209,   209,   209,   209,   209,   209,   209,
-     209,   209,   209,    81,   173,   124,   193,   127,    93,   203,
-     204,   209,   221,    65,     5,   129,   129,     5,   128,   173,
-     173,   123,   123,   123,   123,   123,   123,   123,   123,   123,
-     123,   123,   123,   210,    84,    85,   194,   195,   197,   198,
-     134,   173,     8,   181,   180,   224,   123,   169,    22,   125,
-     195,   196,   198,   126,   209,    22,   174,    65,   199,   128,
-     173
+     209,   209,   209,   209,   209,   209,   209,   209,   209,    65,
+     228,   222,   209,   209,   209,   209,   209,   209,   209,   209,
+     209,   209,   209,   209,   209,    81,   173,   124,   193,   127,
+      93,   203,   204,   209,   221,    65,     5,   129,   129,     5,
+     128,   173,   123,   123,   123,   123,   123,   123,   123,   123,
+     123,   123,   123,   123,   210,    84,    85,   194,   195,   197,
+     198,   134,   173,     8,   181,   180,   224,   123,   169,    22,
+     125,   195,   196,   198,   126,   209,    22,   174,    65,   199,
+     128,   173
   };
 
   const unsigned char
@@ -3438,19 +3450,19 @@ namespace yy {
      170,   170,   171,   171,   171,   172,   173,   174,   174,   175,
      175,   175,   175,   175,   175,   175,   175,   175,   175,   175,
      175,   175,   175,   176,   178,   177,   179,   179,   180,   181,
-     181,   182,   182,   182,   183,   184,   184,   185,   186,   188,
-     187,   190,   189,   192,   191,   193,   194,   194,   196,   195,
-     197,   197,   198,   198,   199,   200,   201,   202,   202,   203,
-     204,   205,   206,   206,   206,   206,   206,   206,   206,   206,
-     206,   206,   206,   206,   207,   208,   208,   209,   209,   209,
-     209,   209,   209,   209,   209,   209,   210,   211,   211,   211,
-     211,   212,   212,   212,   212,   212,   212,   212,   213,   213,
-     213,   213,   213,   213,   213,   213,   214,   214,   215,   215,
-     215,   215,   215,   215,   216,   217,   218,   218,   219,   220,
-     220,   221,   222,   222,   223,   223,   224,   225,   225,   226,
-     227,   227,   228,   228,   229,   230,   230,   231,   232,   232,
-     233,   233,   233,   234,   234,   235,   236,   237,   237,   238,
-     239,   239,   240,   240
+     181,   182,   182,   182,   182,   183,   184,   184,   185,   186,
+     188,   187,   190,   189,   192,   191,   193,   194,   194,   196,
+     195,   197,   197,   198,   198,   199,   200,   201,   202,   202,
+     203,   204,   205,   206,   206,   206,   206,   206,   206,   206,
+     206,   206,   206,   206,   206,   207,   208,   208,   209,   209,
+     209,   209,   209,   209,   209,   209,   209,   210,   211,   211,
+     211,   211,   212,   212,   212,   212,   212,   212,   212,   213,
+     213,   213,   213,   213,   213,   213,   213,   214,   214,   215,
+     215,   215,   215,   215,   215,   216,   217,   218,   218,   219,
+     220,   220,   221,   222,   222,   223,   223,   224,   225,   225,
+     226,   227,   227,   228,   228,   229,   230,   230,   231,   232,
+     232,   233,   233,   233,   234,   234,   235,   236,   237,   237,
+     238,   239,   239,   240,   240
   };
 
   const unsigned char
@@ -3467,19 +3479,19 @@ namespace yy {
        3,     3,     0,     1,     3,     4,     3,     0,     2,     1,
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
        1,     2,     1,     2,     0,     3,     1,     3,     3,     0,
-       2,     1,     2,     3,     3,     1,     2,     3,     2,     0,
-       4,     0,     6,     0,     4,     3,     1,     2,     0,     4,
-       1,     2,     3,     2,     2,     2,     4,     1,     2,     7,
-       2,     3,     4,     4,     4,     4,     4,     4,     4,     4,
-       4,     4,     4,     4,     3,     2,     3,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     3,     1,     1,     1,
-       1,     3,     3,     3,     3,     3,     3,     2,     3,     3,
+       2,     1,     2,     2,     3,     3,     1,     2,     3,     2,
+       0,     4,     0,     6,     0,     4,     3,     1,     2,     0,
+       4,     1,     2,     3,     2,     2,     2,     4,     1,     2,
+       7,     2,     3,     4,     4,     4,     4,     4,     4,     4,
+       4,     4,     4,     4,     4,     3,     2,     3,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     3,     1,     1,
+       1,     1,     3,     3,     3,     3,     3,     3,     2,     3,
        3,     3,     3,     3,     3,     3,     3,     3,     3,     3,
-       3,     3,     3,     2,     3,     3,     1,     3,     3,     1,
-       3,     3,     2,     3,     1,     3,     1,     1,     1,     2,
-       1,     2,     1,     2,     2,     1,     2,     2,     1,     1,
-       1,     1,     1,     1,     2,     2,     1,     1,     2,     1,
-       1,     2,     3,     3
+       3,     3,     3,     3,     2,     3,     3,     1,     3,     3,
+       1,     3,     3,     2,     3,     1,     3,     1,     1,     1,
+       2,     1,     2,     1,     2,     2,     1,     2,     2,     1,
+       1,     1,     1,     1,     1,     2,     2,     1,     1,     2,
+       1,     1,     2,     3,     3
   };
 
 
@@ -3568,7 +3580,7 @@ namespace yy {
   "simple_object_property", "static_method_access", "static_method_call",
   "l_variable", "variable", "local_variable", "variable_id",
   "this_variable", "static_variable", "array_expression",
-  "array_expression_chain", "array_expression_index", YY_NULL
+  "array_expression_chain", "array_expression_index", YY_NULLPTR
   };
 
 
@@ -3586,19 +3598,19 @@ namespace yy {
      602,   609,   619,   620,   624,   630,   643,   651,   654,   664,
      669,   673,   677,   681,   685,   689,   693,   697,   701,   705,
      709,   713,   718,   724,   733,   733,   748,   752,   764,   786,
-     789,   800,   803,   809,   818,   826,   830,   838,   844,   851,
-     851,   862,   862,   872,   872,   884,   889,   892,   900,   900,
-     915,   918,   926,   931,   937,   946,   956,   964,   967,   974,
-     982,   989,   996,  1005,  1014,  1023,  1032,  1041,  1050,  1059,
-    1068,  1077,  1086,  1095,  1106,  1113,  1118,  1131,  1132,  1133,
-    1134,  1135,  1136,  1137,  1138,  1139,  1142,  1146,  1147,  1148,
-    1149,  1152,  1159,  1166,  1173,  1180,  1187,  1194,  1203,  1210,
-    1217,  1224,  1231,  1238,  1245,  1252,  1261,  1268,  1277,  1284,
-    1291,  1298,  1305,  1312,  1322,  1335,  1343,  1348,  1358,  1366,
-    1371,  1380,  1394,  1397,  1404,  1409,  1417,  1419,  1420,  1425,
-    1433,  1436,  1444,  1448,  1457,  1462,  1465,  1473,  1482,  1490,
-    1500,  1504,  1511,  1518,  1523,  1531,  1534,  1542,  1546,  1560,
-    1566,  1569,  1578,  1583
+     789,   800,   803,   809,   815,   824,   832,   836,   844,   850,
+     857,   857,   868,   868,   878,   878,   890,   895,   898,   906,
+     906,   921,   924,   932,   937,   943,   952,   962,   970,   973,
+     980,   988,   995,  1002,  1011,  1020,  1029,  1038,  1047,  1056,
+    1065,  1074,  1083,  1092,  1101,  1112,  1119,  1124,  1137,  1138,
+    1139,  1140,  1141,  1142,  1143,  1144,  1145,  1148,  1152,  1153,
+    1154,  1155,  1158,  1165,  1172,  1179,  1186,  1193,  1200,  1209,
+    1216,  1223,  1230,  1237,  1244,  1251,  1258,  1267,  1274,  1283,
+    1290,  1297,  1304,  1311,  1318,  1328,  1341,  1349,  1354,  1364,
+    1372,  1377,  1386,  1400,  1403,  1410,  1415,  1423,  1425,  1426,
+    1431,  1439,  1442,  1450,  1454,  1463,  1468,  1471,  1479,  1488,
+    1496,  1506,  1510,  1517,  1524,  1529,  1537,  1540,  1548,  1552,
+    1566,  1572,  1575,  1584,  1589
   };
 
   // Print the state stack on the debug stream.
@@ -3689,8 +3701,8 @@ namespace yy {
 
 
 } // yy
-#line 3693 "jap.tab.cc" // lalr1.cc:1156
-#line 1599 "jap.y" // lalr1.cc:1157
+#line 3705 "jap.tab.cc" // lalr1.cc:1155
+#line 1605 "jap.y" // lalr1.cc:1156
 
 
 

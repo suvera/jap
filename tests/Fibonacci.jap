@@ -1,53 +1,36 @@
 class Fibonacci {
 
-    public int $a;
-    
-    public static string $name = "Fibonacci series Generator";
-
     public static void main(array<string> $argv, int $argc) {
         if ($argc < 2) {
-            echo "Please enter number\n";
+            print "Please enter number\n";
             return;
         }
         
         Fibonacci $f = new Fibonacci();
+        
         $f->generate($argv[1]);
         
-        echo "\n";
+        print "\n";
     }
     
     public void generate(int $n) {
-        int $a = 0;
-        int $b = 1;
+        int $a = 0, $b = 1, $m = 0, $t;
         
-        int $m = 0;
-        int $t;
         while ($m < $n) {
-            if ($m == 0) {
-                echo $a;
-                echo " ";
-                $m++;
-                continue;
-            }
-            if ($m == 1) {
-                echo $b;
-                echo " ";
-                $m++;
-                continue;
-            }
+            if ($m <= 1) {
             
-            $t = $b;
-            $b += $a;
-            $a = $t;
+                print $m . " ";
+                
+            } else {
             
-            echo $b;
-            echo " ";
+                $t = $b;
+                $b += $a;
+                $a = $t;
+                
+                print $b . " ";
+            }
             
             $m++;
         }
-    }
-    
-    public string ttt() {
-        return "aa";
     }
 }

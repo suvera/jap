@@ -418,6 +418,7 @@ string AstPHP::astNode(ego::ParseNode *p) {
 		s.append(AstPHP::EOL_CHAR);
 		s.append(AstPHP::EOL);
 		
+        s.append(this->getTab());
 		s.append(this->astNode(p->op2));
 		
 		return s;
@@ -448,14 +449,15 @@ string AstPHP::astNode(ego::ParseNode *p) {
 	case AST_IF_STMT:
 	case AST_ELSE_IF_STMT:
 	case AST_ELSE_STMT:
-		s = this->getTab();
+		s = "";
 
 		if (p->astType == AST_ELSE_IF_STMT) {
-			s.append("else if (" + this->astNode(p->op1) + ") ");
+			s.append("else if (" + this->astNode(p->op1) + ")");
 		} else if (p->astType == AST_ELSE_STMT) {
-			s.append("else ");
+			s.append("else");
 		} else {
-			s.append("if (" + this->astNode(p->op1) + ") ");
+            s = this->getTab();
+			s.append("if (" + this->astNode(p->op1) + ")");
 		}
 
 		s.append(" {");
@@ -497,7 +499,7 @@ string AstPHP::astNode(ego::ParseNode *p) {
 		s =this->getTab();
 
 		if (p->astType == AST_WHILE_STMT) {
-			s.append("while (" + this->astNode(p->op1) + ") ");
+			s.append("while (" + this->astNode(p->op1) + ")");
 		} else {
 			s.append("do ");
 		}
@@ -866,13 +868,11 @@ string AstPHP::astNode(ego::ParseNode *p) {
 	case AST_STATIC_METHOD_CALL:
 		s = "";
 
+        s.append("->");
+        
 		s.append(this->astNode(p->op1));
 
-		//s.append("(");
-
 		s.append(this->astNode(p->op2));
-
-		//s.append(")");
 
 		return s;
 		break;
@@ -896,6 +896,17 @@ string AstPHP::astNode(ego::ParseNode *p) {
 		break;
 
 	case AST_ACTUAL_ARGS:
+		s = "";
+
+        s.append("(");
+        
+		s.append(this->astNode(p->op1));
+        
+        s.append(")");
+
+		return s;
+		break;
+        
 	case AST_ACTUAL_ARG:
 		s = "";
 

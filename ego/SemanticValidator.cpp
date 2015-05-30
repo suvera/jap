@@ -246,9 +246,7 @@ string SemanticValidator::find_return_type(ego::ParseNode* expr, ParentTypeNode*
 
         case AST_STATIC_ARRAY_VARIABLE:
         {
-            this->find_return_type(expr->op1);
-
-            return string("array");
+            return this->find_return_type(expr->op1);
         }
         break;
 
@@ -1131,6 +1129,44 @@ void SemanticValidator::checkLocalVariable(ClassMethod* method, ego::Variable* v
 	}
 }
 
+// get actual argument types by argument list NODE
+void SemanticValidator::_getActualArgTypes(ego::ParseNode* node, vector<string>& list) {
+    if (node->astType == AST_ACTUAL_ARG) {
+    
+        list.push_back(this->find_return_type(node->op1, NULL));
+        
+    } else if (node->astType == AST_ACTUAL_ARG_LIST) {
+    
+        ego::ParseNode node1 = this->table->getItem(node->op1);
+        this->_getActualArgTypes(&node1, list);
+        
+        ego::ParseNode node2 = this->table->getItem(node->op2);
+        this->_getActualArgTypes(&node2, list);
+    }
+}
+
+// get actual argument types by argument list NODE
+vector<string> SemanticValidator::getActualArgTypes(ego::ParseNode* node) {
+    vector<string> args;
+    
+    if (node->astType == AST_ACTUAL_ARGS) {
+        ego::ParseNode argsNode = this->table->getItem(node->op1);
+        
+        _getActualArgTypes(&argsNode, args);
+    }
+    
+    return args;
+}
+
+// check if two types are compatible?
+bool SemanticValidator::isTypeCompatibe(string a, string b) {
+    if (is_scalar_type(a) && is_scalar_type(b)) {
+        return a == b;
+    } else if (!is_scalar_type(a) && !is_scalar_type(b)) {
+    } else {
+        return false;
+    }
+}
 
 
 // namespace end

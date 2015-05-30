@@ -13,7 +13,7 @@ All JAP programs will be translated to PHP/Hack/Java ( Hack/Java under developme
 # Examples
 
 Test.jap
-```java
+```php
 class Test {
 
     public static void main(array<string> $agrv, int $argc) {
@@ -23,7 +23,7 @@ class Test {
 }
 ```
 
-** How to run it **
+### How to run it
 ```bash
 # Compile to PHP source
 jap Test.jap
@@ -38,59 +38,50 @@ Hello, World!
 
 
 tests/Fibonacci.jsp
-```java
+```php
 package tests;
 
 class Fibonacci {
 
-    public int $a;
-    
-    public static string $name = "Fibonacci series Generator";
-
     public static void main(array<string> $argv, int $argc) {
-        if ($argc < 2) {
-            echo "Please enter number\n";
-            return;
-        }
-        
         Fibonacci $f = new Fibonacci();
-        $f->generate($argv[1]);
+        
+        $f->generate(9);
         
         print "\n";
     }
     
     public void generate(int $n) {
-        int $a = 0;
-        int $b = 1;
+        int $a = 0, $b = 1, $m = 0, $t;
         
-        int $m = 0;
-        int $t;
         while ($m < $n) {
-            if ($m == 0) {
-                print $a;
-                print " ";
-                $m++;
-                continue;
+            if ($m <= 1) {
+            
+                print $m . " ";
+                
+            } else {
+            
+                $t = $b;
+                $b += $a;
+                $a = $t;
+                
+                print $b . " ";
             }
-            
-            if ($m == 1) {
-                print $b;
-                print " ";
-                $m++;
-                continue;
-            }
-            
-            $t = $b;
-            $b += $a;
-            $a = $t;
-            
-            print $b;
-            print " ";
             
             $m++;
         }
     }
 }
+```
+
+### How to run it
+```bash
+# Compile to PHP source
+jap tests/Fibonacci.jap
+
+# Execute
+japp tests/Fibonacci.jap
+0 1 1 2 3 5 8 13 21 
 ```
 
 **Rule-2: Directory name and package name must be same.**

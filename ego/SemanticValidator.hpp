@@ -66,7 +66,10 @@ public:
 };
 
 class SemanticValidator {
-
+protected:
+    // get actual argument types by argument list NODE
+    void _getActualArgTypes(ego::ParseNode*, vector<string>&);
+    
 public:
 	ParsingState* xState;
 	SmartNodeGroup* table;
@@ -123,6 +126,12 @@ public:
 	void checkClass();
 
 	void checkInterface();
+    
+    // get actual argument types by argument list NODE
+    vector<string> getActualArgTypes(ego::ParseNode*);
+    
+    // check if two types are compatible?
+    bool isTypeCompatibe(string, string);
 
 	// class end
 };

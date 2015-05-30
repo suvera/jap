@@ -800,6 +800,12 @@ if_stmt :
     if_stmt_only { 
         $$ = $1;
     }
+    | if_stmt_only else_stmt { 
+        $$ = ego_empty_node();
+        $$.op1 = ego_add_to_table($1);
+        $$.op2= ego_add_to_table($2);
+        $$.astType = AST_IF_ELSE_IF_STMT;
+    }
     | if_stmt_only multiple_else_if_stmt { 
         $$ = ego_empty_node();
         $$.op1 = ego_add_to_table($1);
