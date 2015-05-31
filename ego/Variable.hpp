@@ -49,6 +49,8 @@ public:
 	}
 
 	template<class VARTABLE> string getQualified(VARTABLE* table);
+    
+    template<class VARTABLE> string getQualified(VARTABLE* table, int);
 };
 
 /* TypeGenericGroup */
@@ -97,7 +99,8 @@ template<class VARTABLE> string NameWithGenerics::getQualified(VARTABLE* table) 
 		s.append("<");
 
 		for (BIGINT i=0; i < size; i++) {
-			NameWithGenerics item = table->getItem(i);
+            BIGINT p = this->genericTypes[i];
+			NameWithGenerics item = table->getItem(p);
 
 			s.append(item.getQualified<VARTABLE>(table));
 
@@ -107,6 +110,27 @@ template<class VARTABLE> string NameWithGenerics::getQualified(VARTABLE* table) 
 		}
 
 		s.append(">");
+	}
+
+	return s;
+};
+
+// implement getQualified here
+template<class VARTABLE> string NameWithGenerics::getQualified(VARTABLE* table, int depth) {
+	string s;
+
+	BIGINT size = this->genericTypes.size();
+	if (size > depth) {
+
+		for (BIGINT i=depth; i < size; i++) {
+			NameWithGenerics item = table->getItem(this->genericTypes[i]);
+
+			s.append(item.getQualified<VARTABLE>(table));
+
+			if (i < size-1) {
+				s.append(",");
+			}
+		}
 	}
 
 	return s;
@@ -180,6 +204,8 @@ public:
     void initAll();
 
     string getQualifiedType();
+    
+    string getQualifiedType(int);
 
 };
 

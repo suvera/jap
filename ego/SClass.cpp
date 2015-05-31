@@ -74,7 +74,7 @@ ClassVariable* SClass::addVariable(ClassVariable* var) {
 }
 
 string SClass::getFullName() const {
-	return string(this->pkg + "." + this->name);
+	return string((this->pkg.length() ? (this->pkg + ".") : "") + this->name);
 }
 
 bool SClass::isMethodConstructor(ClassMethod* method) {
@@ -87,7 +87,7 @@ string SClass::getQualifiedType() {
 
 // this is a stand alone function
 bool isValidGenericType(NameWithGenerics name, string val, SClass* cls) {
-	if (name.isGeneric == true && name.name == val) {
+	if (name.isGeneric == true && string("?" + name.name) == val) {
 		return true;
 	}
 
@@ -115,6 +115,10 @@ bool SClass::isValidGenericType(string val) {
  */
 string SClass::resolveClassName(string clsName) {
 
+    if (clsName == this->name) {
+        this->getFullName();
+    }
+    
     if (this->classShortNameMap.hasKey(clsName)) {
 		return this->classShortNameMap.at(clsName);
 	}

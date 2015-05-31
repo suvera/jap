@@ -8,7 +8,7 @@ class Fibonacci {
         
         Fibonacci $f = new Fibonacci();
         
-        $f->generate($argv[1]);
+        $f->generate(8);
         
         print "\n";
     }

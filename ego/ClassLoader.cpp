@@ -92,6 +92,7 @@ void ClassLoader::registerClass(string fullName, bool force=false) {
  * Register a class with it's fullName
  */
 void ClassLoader::registerClass(SClass* cls, bool force=false) {
+    
 	try {
 
 	    if (force) {
@@ -110,8 +111,11 @@ void ClassLoader::registerClass(SClass* cls, bool force=false) {
  */
 SClass* ClassLoader::getClass(string fullName) {
 	try {
+        
 		return ClassLoader::loaded.at(fullName);
+        
 	} catch (const std::out_of_range& oor) {
+    
         ClassLoader::loadClass(fullName);
 
         return ClassLoader::loaded.at(fullName);

@@ -57,11 +57,15 @@ public:
 	string type;
 	BIGINT nodeId;
 	ego::ParseNode* node;
+    ego::Variable* var;
+    int depth;
 
 	ParentTypeNode() {
 		this->type = "";
 		this->nodeId = 0;
 		this->node = NULL;
+        this->var = NULL;
+        this->depth = 0;
 	}
 };
 

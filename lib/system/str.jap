@@ -1,6 +1,7 @@
 package system;
 
 class str {
+/*
     public static string addcslashes(string $str, string $charlist) {
         return "";
     }
@@ -44,12 +45,12 @@ class str {
     public static string crypt(string $str, string $salt = "") {
         return "";
     }
-
+*/
     public static array<string> explode(string $delimiter, string $str, int $limit = 0) {
         array<string> $a;
         return $a;
     }
-
+/*
     public static array<string> get_html_translation_table(int $table = 0, int $flags = 0, string $encoding = "") {
         array<string> $a;
         return $a;
@@ -356,5 +357,5 @@ class str {
     public static string wordwrap(string $str, int $width = 0, string $brk = "", bool $cut = false) {
         return "";
     }
-
+*/
 }

@@ -194,8 +194,21 @@ string SemanticValidator::find_return_type(ego::ParseNode* expr, ParentTypeNode*
 		}
         break;
 
-        case AST_LOCAL_VARIABLE:
         case AST_LOCAL_ARRAY_VARIABLE:
+		{
+            ego::ParseNode node = this->table->getItem(expr->op1);
+            Variable* localVar = method->getLocalVar(node.sVal);
+            
+            ParentTypeNode* parentNode = new ParentTypeNode();
+            parentNode->type = localVar->getQualifiedType();
+            parentNode->nodeId = expr->op1;
+            parentNode->var = localVar;
+            
+            return this->find_return_type(expr->op2, parentNode);
+		}
+        break;
+        
+        case AST_LOCAL_VARIABLE:
 		{
             ego::ParseNode node = this->table->getItem(expr->op1);
             Variable* localVar = method->getLocalVar(node.sVal);
@@ -332,12 +345,40 @@ string SemanticValidator::find_return_type(ego::ParseNode* expr, ParentTypeNode*
                         + ","
                         + this->getErrorDetail()));
             }
-
-            // TODO: get actual arguments from Syntax Tree
+            
+            // get actual arguments from Syntax Tree
             ego::ParseNode actualArgNode = this->table->getItem(expr->op2);
+            vector<string> actualArgTypes = this->getActualArgTypes(&actualArgNode);
 
+            if (actualArgTypes.size() > pMethod->getArgCount()) {
+                ego::throwError(string("Too many arguments to the method "
+                        + parentCls->getFullName() + "::" + pMethod->name
+                        + ","
+                        + this->getErrorDetail()));
+            }
+            
             for (int i=0; i < pMethod->getArgCount(); i++) {
                 Variable* var = pMethod->getArg(i);
+                
+                if (i < actualArgTypes.size()) {
+                
+                    if (!this->isTypeCompatibe(actualArgTypes[i], var->getQualifiedType())) {
+                        ego::throwError(string("Argument " + std::to_string(i+1) + " data type did not match, expected: "
+                            + var->getQualifiedType()
+                            + ", actual: " + actualArgTypes[i]
+                            + " to call method "
+                            + parentCls->getFullName() + "::" + pMethod->name
+                            + ","
+                            + this->getErrorDetail()));
+                    }
+                } else {
+                    if (var->valNode == 0) {
+                        ego::throwError(string("Argument " + std::to_string(i+1) + " is required to call method "
+                            + parentCls->getFullName() + "::" + pMethod->name
+                            + ","
+                            + this->getErrorDetail()));
+                    }
+                }
             }
 
             return pMethod->returnType;
@@ -526,9 +567,32 @@ string SemanticValidator::find_return_type(ego::ParseNode* expr, ParentTypeNode*
 		break;
 		
 		case AST_ARRAY_MULTI:
+        {
+            parent->depth++;
+            
+            string s = this->find_return_type(expr->op1, parent);
+            
+            return s;
+        }
 		break;
 		
 		case AST_ARRAY_INDEX_EXPR:
+        {
+            string s = parent->var->getQualifiedType(parent->depth);
+            
+            parent->depth++;
+            
+            if (s.length() == 0) {
+                ego::throwError(string("array dimension cannot exceed '" 
+                    + std::to_string(parent->depth)
+                    + " for variable $"
+                    + parent->var->name
+                    + " " 
+                    + this->getErrorDetail()));
+            }
+            
+            return s;
+        }
 		break;
 		
     }
@@ -552,7 +616,7 @@ void SemanticValidator::check_method_main(ClassMethod *method) {
     }
 
     Variable* arg1 = method->getArg(0);
-    if (arg1->type != "array") {
+    if (arg1->type != DATA_TYPE_ARRAY) {
         ego::throwError(string("method main should accept first argument as array in the class " + cls->name));
     }
 
@@ -612,7 +676,7 @@ void SemanticValidator::check_assignment(ego::ParseNode* node) {
 }
 
 void SemanticValidator::check_local_variable_type(ego::ParseNode* node) {
-	// Must not use ? generics on local varaible definition
+	// Must not use ? generics on local variable definition
 	
 	this->check_local_variable_type_no_generics(node);
 	
@@ -621,7 +685,7 @@ void SemanticValidator::check_local_variable_type(ego::ParseNode* node) {
 }
 
 void SemanticValidator::check_local_variable_type_no_generics(ego::ParseNode* node) {
-	// Must not use ? generics on local varaible definition
+	// Must not use ? generics on local variable definition
 	switch (node->astType) {
 		case AST_DATA_TYPE_GENERIC_HINT_NAME:
 		{
@@ -644,7 +708,7 @@ void SemanticValidator::check_local_variable_type_no_generics(ego::ParseNode* no
 }
 
 void SemanticValidator::check_local_variable_type_exists(ego::ParseNode* node) {
-	// Must not use ? generics on local varaible definition
+	// Must not use ? generics on local variable definition
 	if (node->astType > 0) {
 		if (!ClassLoader::hasType(node->sVal)) {
 			ego::throwError(string(
@@ -983,7 +1047,7 @@ void SemanticValidator::checkClassMethod(ClassMethod* method) {
 		}
 	}
 
-	string typeStr = method->qualifiedType.getQualified<ego::TypeGenericGroup>(&cls->typeTable);
+	string typeStr = method->qualifiedType.getQualified<ego::TypeGenericGroup>(&method->typeTable);
 
 	if (typeStr == DATA_VALUE_NULL) {
 		ego::throwError(string("return type of a method cannot be null type '"
@@ -1011,6 +1075,8 @@ void SemanticValidator::checkClassMethod(ClassMethod* method) {
 	// Traverse the body and make sure that
 	// 1. it has return statement
 	// 2. Type should match
+    
+    this->checkClassMethodBody(method);
 }
 
 /**
@@ -1029,7 +1095,12 @@ void SemanticValidator::processNode(ego::ParseNode* node, ClassMethod* method) {
 	switch (node->astType) {
 		case AST_RETURN_STMT:
 		{
-			this->check_return_statement(node, method);
+            if (node->op1 == 0) {
+                this->check_return_statement(NULL, method);
+            } else {
+                ego::ParseNode newNode = this->table->getItem(node->op1);
+                this->check_return_statement(&newNode, method);
+            }
 		}
 		break;
 
@@ -1058,7 +1129,15 @@ void SemanticValidator::processNode(ego::ParseNode* node, ClassMethod* method) {
 			this->check_assignment(node);
 		}
 		break;
+        
+        case AST_OBJECT_PROPERTY_ACCESS:
+        {
+            this->find_return_type(node, NULL);
+        }
+        break;
 	}
+    
+    //this->find_return_type(node, NULL);
 
 	// recursively check the tree
 	if (node->op1) {
@@ -1160,9 +1239,15 @@ vector<string> SemanticValidator::getActualArgTypes(ego::ParseNode* node) {
 
 // check if two types are compatible?
 bool SemanticValidator::isTypeCompatibe(string a, string b) {
-    if (is_scalar_type(a) && is_scalar_type(b)) {
+    if (a == b) {
+        return true;
+    } else if (ClassLoader::isKnownType(a) && ClassLoader::isKnownType(b)) {
         return a == b;
     } else if (!is_scalar_type(a) && !is_scalar_type(b)) {
+        SClass* leftCls = ClassLoader::getClass(cls->resolveClassName(a));
+        SClass* rightCls = ClassLoader::getClass(cls->resolveClassName(b));
+        
+        return leftCls->instanceOf(rightCls);
     } else {
         return false;
     }

@@ -48,6 +48,7 @@ void Variable::setValue(string value) {
 Variable::Variable(string v, string t) :
 	name(v), type(t) {
 	this->caseLessName = toLower(v);
+    this->valNode = 0;
 }
 
 bool Variable::getIsFormal() const {
@@ -60,6 +61,10 @@ void Variable::setIsFormal(bool isFormal) {
 
 string Variable::getQualifiedType() {
 	return this->qualifiedType.getQualified<ego::TypeGenericGroup>(&this->typeTable);
+}
+
+string Variable::getQualifiedType(int depth) {
+	return this->qualifiedType.getQualified<ego::TypeGenericGroup>(&this->typeTable, depth);
 }
 
 void Variable::initAll() {

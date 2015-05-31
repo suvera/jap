@@ -4,7 +4,7 @@ prefix = /usr/local
 bindir = $(prefix)/bin
 CC=g++
 BOOST_INC=-lboost_system -lboost_filesystem
-CFLAGS= -Wno-write-strings -I. -I./cmdline -std=gnu++11 -I./cereal/include
+CFLAGS= -Wno-write-strings -I. -I./cmdline -std=gnu++11 -g -I./cereal/include
 
 all: jap japp japx
 
