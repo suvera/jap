@@ -19,18 +19,22 @@ struct JapGlobal {
 	std::string PROJECT_BASE_TARGET;
 
 	std::string JAP_HOME;
+    std::string JAP_INI;
 
 	JapGlobal() {
-
 	    char* japHome;
+        
         japHome = getenv("JAP_HOME");
         if (japHome == NULL || strlen(japHome) == 0) {
-            cerr << "JAP_HOME does not exist.\n";
-            exit(EXIT_FAILURE);
+            //cerr << "JAP_HOME does not exist.\n";
+            //exit(EXIT_FAILURE);
+            JAP_HOME = string("/usr/local/jap");
+        } else {
+            JAP_HOME = string(japHome);
         }
 
-        this->JAP_HOME = string(japHome);
-
+        this->JAP_INI = string(JAP_HOME + "/jap.ini");
+        
 		fileIO::path japDir = fileIO::path(getexepath());
 		this->JAP_BASE = japDir.parent_path().string();
 		this->JAP_BASE_AST = std::string(this->JAP_BASE + DIR_DIVIDER + "ast");

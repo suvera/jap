@@ -21,9 +21,13 @@ japx: japx.cpp
 	$(CC) $(CFLAGS) japx.cpp $(BOOST_INC) -o $(BUILDS)/japx
 
 install: all
+	mkdir -p $(prefix)/jap
 	cp $(BUILDS)/jap $(bindir)/jap
 	cp $(BUILDS)/japp $(bindir)/japp
 	cp $(BUILDS)/japx $(bindir)/japx
+	cp -rf ./target_lib $(prefix)/jap/target_lib
+	cp -rf ./lib $(prefix)/jap/lib
+	cp -n ./jap.ini $(prefix)/jap/
 
 japX: jap
 	cp $(BUILDS)/jap $(bindir)/jap

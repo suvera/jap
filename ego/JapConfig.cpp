@@ -16,6 +16,10 @@ struct JapConfig {
 	JapConfig() {
 		this->_init();
 		this->setLogging();
+        
+        if (fileIO::exists(JG.JAP_INI)) {
+            this->setIniFile(JG.JAP_INI);
+        }
 	}
 
 	~JapConfig() {

@@ -19,6 +19,7 @@
 #include <map>
 #include <unordered_map>
 #include <stdexcept>
+#include <cstdarg>
 
 // Boost includes
 #include <boost/filesystem.hpp>
@@ -38,6 +39,7 @@
 #include <cereal/archives/json.hpp>
 #include <cereal/archives/portable_binary.hpp>
 #include <cereal/archives/xml.hpp>
+
 
 using namespace std;
 
@@ -190,10 +192,31 @@ typedef unordered_map<string, string> StringMap;
 #define EXIT_SUCCESS 0
 #endif
 
+extern int _DEBUG;
+int _DEBUG = 0;
 
 /**
 * Common functions
 */
+// Debug print
+void _pp(const char * format, ...) {
+    if (!_DEBUG) {
+        return;
+    }
+    
+    char buffer[1024];
+    va_list args;
+    va_start(args, format);
+    
+    vsprintf(buffer, format, args);
+    
+    perror(buffer);
+    
+    va_end(args);
+    
+    perror("\n");
+}
+
 const std::string currentDateTime() {
     time_t     now = time(0);
     struct tm  tstruct;

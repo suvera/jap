@@ -25,6 +25,11 @@ int main(const int argc, char *argv[])
         std::cerr << cmdLine.usage();
         exit(EXIT_SUCCESS);
     }
+    
+    if (cmdLine.exist("verbose")) {
+        cout << "Debug: On\n";
+        _DEBUG = 1;
+    }
 
     string config = cmdLine.get<string>("config");
     if (config.size() > 0 ) {
