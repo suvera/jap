@@ -882,7 +882,8 @@ string AstPHP::astNode(ego::ParseNode *p) {
 
 		s.append("->");
 
-		s.append(this->astNode(p->op1));
+		//s.append(this->astNode(p->op1));
+        s.append(p->sVal);
 
 		return s;
 		break;
