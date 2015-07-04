@@ -93,6 +93,8 @@ typedef yy::parser::semantic_type semtcNode;
 %left T_ELSE
 %token T_ELSE      "else (T_ELSE)"
 
+%token T_VAR    "variable (T_VAR)"
+
 %left T_ID
 %token T_ID    "identifier (T_ID)"
 
@@ -150,15 +152,6 @@ typedef yy::parser::semantic_type semtcNode;
 %token T_SELF    "self (T_SELF)"
 %token T_PARENT    "parent (T_PARENT)"
 %token T_THIS    "this (T_THIS)"
-
-
-%token T_CLASS_C         "__CLASS__ (T_CLASS_C)"
-%token T_TRAIT_C         "__TRAIT__ (T_TRAIT_C)"
-%token T_METHOD_C        "__METHOD__ (T_METHOD_C)"
-%token T_LINE            "__LINE__ (T_LINE)"
-%token T_FILE            "__FILE__ (T_FILE)"
-%token T_NS_C            "__NAMESPACE__ (T_NS_C)"
-%token T_DIR             "__DIR__ (T_DIR)"
 
 %token T_WHITESPACE      "whitespace (T_WHITESPACE)"
 %token T_PAAMAYIM_NEKUDOTAYIM ":: (T_PAAMAYIM_NEKUDOTAYIM)"
@@ -430,24 +423,24 @@ scope_modifier :
 //
 
 class_attribute_decl_part : 
-    data_type_hint '$' T_ID {
+    data_type_hint T_VAR {
         //kicker->validator->validate_data_type_name(&$1, false);
         
 		YYSTYPE modifier = ego_get_from_table(kicker->parseState->lastNodeId);
         
         // register variable
-        ego::ClassVariable* var = ego_register_class_variable(&$1, &$3, &modifier);
+        ego::ClassVariable* var = ego_register_class_variable(&$1, &$2, &modifier);
 		
 	} scalar_const_assignment ';' {
         if (kicker->parseState->curVar->isConst) {
-            if ($5.sType == token::T_EMPTY) {
+            if ($4.sType == token::T_EMPTY) {
                 ego::throwError(string("Class Constants must be initialized '" + kicker->parseState->curVar->name + "' with values."));
             }
         }
         
-        kicker->parseState->curVar->value = $5.sVal;
+        kicker->parseState->curVar->value = $4.sVal;
 		// Assign Value
-		kicker->parseState->curVar->valNode = ego_add_to_table($5);
+		kicker->parseState->curVar->valNode = ego_add_to_table($4);
 		
 		//kicker->validator->check_class_variable(kicker->parseState->curVar);
     }
@@ -627,14 +620,14 @@ formal_param_list:
 
 
 formal_parameter : 
-    data_type_hint '$' T_ID scalar_const_assignment {
+    data_type_hint T_VAR scalar_const_assignment {
         //kicker->validator->validate_data_type_name(&$1, false);
        
-        ego::Variable* var = ego_register_method_variable(&$1, &$3, &$4);
+        ego::Variable* var = ego_register_method_variable(&$1, &$2, &$3);
         var->isFormal = true;
         kicker->parseState->curMethod->addArg(var);
         
-        $$ = $3;
+        $$ = $2;
         
         //kicker->validator->check_local_variable(var, varIsObject(&$1));
     }
@@ -761,21 +754,21 @@ variable_definitions :
 
 // Should be used with variable_definitions_expr
 variable_definition_part : 
-	'$' T_ID optional_assignment_expr {
+	T_VAR optional_assignment_expr {
 		
 		YYSTYPE curVarType = ego_get_from_table(kicker->parseState->lastNodeId);
 		//kicker->validator->check_local_variable_type(&curVarType);
 		
-		ego::Variable* var = ego_register_method_variable(&curVarType, &$2, &$3);
+		ego::Variable* var = ego_register_method_variable(&curVarType, &$1, &$2);
 		
 		YYSTYPE p;
         p.op1 = kicker->parseState->lastNodeId;
-        p.op2 = ego_add_to_table($2);
+        p.op2 = ego_add_to_table($1);
         p.astType = AST_VAR_DEFINITION;
 		
 		$$ = ego_empty_node();
         $$.op1 = ego_add_to_table(p);
-        $$.op2 = ego_add_to_table($3);
+        $$.op2 = ego_add_to_table($2);
 		$$.astType = AST_VAR_DEFINE;
 		
 		//kicker->validator->check_local_variable(var, varIsObject(&curVarType));
@@ -977,11 +970,11 @@ catch_multiple :
         $$.astType = AST_MULTI_CATCH_STMT;
     }
 
-catch_one : T_CATCH '(' full_package_name '$' T_ID ')' closed_stmt_list {
+catch_one : T_CATCH '(' full_package_name T_VAR ')' closed_stmt_list {
         $$ = $1;
         $$.op1 = ego_add_to_table($3);
-        $$.op = ego_add_to_table($5);
-        $$.op2 = ego_add_to_table($7);
+        $$.op = ego_add_to_table($4);
+        $$.op2 = ego_add_to_table($6);
         $$.astType = AST_CATCH_STMT;
     }
 
@@ -1534,7 +1527,7 @@ local_variable :
     }
 //
 
-variable_id : '$' T_ID { $$ = $2; }
+variable_id : T_VAR { $$ = $1; }
 //
 
 this_variable : T_THIS { 

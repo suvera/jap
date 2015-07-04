@@ -279,6 +279,36 @@ std::string add_slashes(string subject) {
 	return ret;
 }
 
+std::string add_escape(string subject, char escaped) {
+    std::string ret;
+    unsigned long len = subject.size();
+    ret.reserve(len);
+
+    for (unsigned long i = 0; i < len; i++) {
+        if (subject[i] == escaped) {
+            ret += '\\';
+        }
+        ret += subject[i];
+    }
+
+	return ret;
+}
+
+std::string escape_string(string subject) {
+    std::string ret;
+    unsigned long len = subject.size();
+    ret.reserve(len);
+
+    for (unsigned long i = 0; i < len; i++) {
+        if (subject[i] == '$') {
+            ret += '\\';
+        }
+        ret += subject[i];
+    }
+
+	return ret;
+}
+
 // trim from start
 static inline std::string &ltrim(std::string &s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));

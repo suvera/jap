@@ -13,7 +13,7 @@ int yylex(yy::parser::semantic_type *sNode, const yy::parser::location_type* loc
     //std::cout << "Lex: token ID: " << sNode->sVal << "\n";
     int token = kicker->lexer->yylex();
 
-    if (token == yy::parser::token::T_STRING) {
+    if (token == yy::parser::token::T_STRING || token == yy::parser::token::T_VAR) {
         sNode->assign(kicker->xState->lastString);
     } else {
         sNode->assign(kicker->lexer->YYText());

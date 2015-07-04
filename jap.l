@@ -37,6 +37,7 @@ WHITESPACE  [ \t]+
 LETTER      [A-Za-z_]
 DIGIT       [0-9]
 ID          {LETTER}({LETTER}|{DIGIT})*
+VAR         \${ID}
 FLOAT1      {DIGIT}+\.{DIGIT}*
 FLOAT2      {DIGIT}*\.{DIGIT}+
 FLOATF      -?({FLOAT1}|{FLOAT2})([eE][+-]?{DIGIT}+)?
@@ -413,34 +414,6 @@ TOKEN       [;\:,\.\[\]\(\)\|\^\&\+\-\/\*\=\%\!\~\$\<\>\?\@\{\}]
 	return simpleLexAction(token::T_THIS);
 }
 
-"__CLASS__" {
-	return simpleLexAction(token::T_CLASS_C);
-}
-
-"__TRAIT__" {
-	return simpleLexAction(token::T_TRAIT_C);
-}
-
-"__METHOD__" {
-	return simpleLexAction(token::T_METHOD_C);
-}
-
-"__LINE__" {
-	return simpleLexAction(token::T_LINE);
-}
-
-"__FILE__" {
-	return simpleLexAction(token::T_FILE);
-}
-
-"__NAMESPACE__" {
-	return simpleLexAction(token::T_NS_C);
-}
-
-"__DIR__" {
-	return simpleLexAction(token::T_DIR);
-}
-
 "::" {
 	return simpleLexAction(token::T_PAAMAYIM_NEKUDOTAYIM);
 }
@@ -476,6 +449,19 @@ TOKEN       [;\:,\.\[\]\(\)\|\^\&\+\-\/\*\=\%\!\~\$\<\>\?\@\{\}]
     incrChars();
     kicker->xState->incrLines();
     registerLexToken(token::T_WHITESPACE);
+}
+
+{VAR} {
+    incrChars();
+    
+    const char *text = kicker->lexer->YYText();
+    string s = string(text+1);
+    
+    kicker->xState->setLastString(s);
+    
+    registerLexToken(token::T_VAR);
+    
+    return token::T_VAR;
 }
 
 {ID} {

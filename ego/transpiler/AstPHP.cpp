@@ -962,7 +962,7 @@ string AstPHP::astNode(ego::ParseNode *p) {
 		break;
 
 	case AST_STRING:
-		return string("\"" + p->sVal + "\"");
+		return string("\"" + escape_string(p->sVal) + "\"");
 		break;
 
 	case AST_NULL:

@@ -378,7 +378,7 @@ static int yy_flex_strlen (yyconst char * );
 #undef YY_DECL
 #endif
 
-#line 515 "jap.l"
+#line 501 "jap.l"
 
 
 #line 385 "lex.yy.hh"
