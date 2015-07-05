@@ -280,7 +280,9 @@ ego::Variable* ego_register_method_variable(semtcNode* type, semtcNode* name, se
     var->value = assgnmt->sVal;
 
     // Assign Value
-    var->valNode = ego_add_to_table(*assgnmt);
+    if (assgnmt->sType != yy::parser::token::T_EMPTY) {
+        var->valNode = ego_add_to_table(*assgnmt);
+    }
 
 	var->qualifiedType = ego_get_qualified_type<ego::Variable>(type, var, NULL);
 

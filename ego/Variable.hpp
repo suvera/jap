@@ -169,7 +169,7 @@ public:
 
     // *Note: This will not contain the value in parsing phase
 	string value;
-    BIGINT valNode;
+    BIGINT valNode = 0;
 
 	bool isFormal;
 

@@ -103,8 +103,8 @@ void AstPHP::astImports() {
 void AstPHP::astClasses() {
 
 	for (int i = 0; i < this->fileParser->classList.size(); i++) {
-		SClass *cls = this->fileParser->classList[i];
-		this->astClass(cls);
+		this->curCls = this->fileParser->classList[i];
+		this->astClass(this->curCls);
 	}
 }
 
@@ -237,7 +237,7 @@ void AstPHP::_processClassVariable(ClassVariable* var, SClass* cls) {
 	if (var->value.length() > 0) {
 		this->add(" = ");
 		//cout << "X value: " << var->valNode.sType << ": " << var->valNode.sVal << endl;
-		this->add(this->astNode(var->valNode));
+		this->add(this->astNode(var->valNode, NULL));
 	}
 	//cout << "X var name end: " << var->name << endl;
 
@@ -246,6 +246,8 @@ void AstPHP::_processClassVariable(ClassVariable* var, SClass* cls) {
 }
 
 void AstPHP::_processClassMethod(ClassMethod* method, SClass* cls) {
+    this->curMethod = method;
+    
 	this->addTab();
 
 	if (method->isPublic) {
@@ -295,7 +297,7 @@ void AstPHP::_processClassMethod(ClassMethod* method, SClass* cls) {
 
 		if (arg->value.length() > 0) {
 			this->add(" = ");
-			this->add(this->astNode(arg->valNode));
+			this->add(this->astNode(arg->valNode, NULL));
 		}
 	}
 
@@ -311,7 +313,7 @@ void AstPHP::_processClassMethod(ClassMethod* method, SClass* cls) {
 
 		this->incrTab();
 
-		this->add(this->astNode(&method->body));
+		this->add(this->astNode(&method->body, NULL));
 
 		this->decrTab();
 
@@ -342,18 +344,22 @@ void AstPHP::translate() {
 
 }
 
-string AstPHP::astNode(ego::ParseNode p) {
+string AstPHP::astNode(ego::ParseNode p, AstProcessObject* parent = NULL) {
 	//cout << "Pass by value in astNode" << endl;
-	return this->astNode(&p);
+	return this->astNode(&p, parent);
 }
 
-string AstPHP::astNode(BIGINT p) {
+string AstPHP::astNode(BIGINT p, AstProcessObject* parent = NULL) {
 	//cout << "Pass by value in astNode" << endl;
 	ego::ParseNode node = this->fileParser->table->getItem(p);
-	return this->astNode(&node);
+	return this->astNode(&node, parent);
 }
 
-string AstPHP::astNode(ego::ParseNode *p) {
+ego::ParseNode AstPHP::_getNodeObject(BIGINT p) {
+    return this->fileParser->table->getItem(p);
+}
+
+string AstPHP::astNode(ego::ParseNode *p, AstProcessObject* parent = NULL) {
 	string s, tmp;
 
 	if (p == NULL) {
@@ -828,18 +834,50 @@ string AstPHP::astNode(ego::ParseNode *p) {
 		break;
 
 	case AST_STATIC_VARIABLE:
-	case AST_SELF_STATIC_VARIABLE:
+    case AST_SELF_STATIC_VARIABLE:
+    {
 		s = "";
 
-		s.append(this->astNode(p->op1));
+        ego::ParseNode _node = _getNodeObject(p->op1);
+        
+        if (parent) {
+            if (p->astType == AST_SELF_STATIC_VARIABLE) {
+                parent->callingCls = curCls;
+            } else {
+                parent->callingCls = ClassLoader::getClass(this->curCls->resolveClassName(_node.sVal));
+            }
+        }
 
-		s.append(this->astNode(p->op));
+        
 
-		s.append(this->astNode(p->op2));
-
+        ego::ParseNode _node2 = _getNodeObject(p->op2);
+        
+        bool flag = false;
+        if (parent && parent->isCallingMethod) {
+            parent->callingMethod = parent->callingCls->getMethod(toLower(_node2.sVal));
+            
+            if (parent->callingMethod->isFuture) {
+                s.append("FutureClient::functionJob(\"");
+                s.append(parent->callingCls->getFullName());
+                s.append("\", \"");
+                s.append(_node2.sVal);
+                s.append("\"");
+                
+                flag = true;
+            }
+        } 
+        
+        if (!flag) {
+            s.append(this->astNode(&_node, parent));
+            s.append(this->astNode(p->op, parent));
+            s.append(this->astNode(&_node2, parent));
+        }
+        
 		return s;
-		break;
+    }
+	break;
 
+    
 	case AST_OBJECT_PROPERTY_ACCESS:
 	case AST_OBJECT_PROPERTY_CHAIN:
 	case AST_STATIC_PROPERTY_CHAIN:
@@ -865,7 +903,6 @@ string AstPHP::astNode(ego::ParseNode *p) {
 		break;
 
 	case AST_METHOD_CALL:
-	case AST_STATIC_METHOD_CALL:
 		s = "";
 
         s.append("->");
@@ -877,6 +914,21 @@ string AstPHP::astNode(ego::ParseNode *p) {
 		return s;
 		break;
 
+    case AST_STATIC_METHOD_CALL:
+    {
+		s = "";
+        
+        AstProcessObject process;
+        process.isCallingMethod = true;
+        
+        s.append(this->astNode(p->op1, &process));
+
+        s.append(this->astNode(p->op2, &process));
+        
+		return s;
+    }
+	break;
+        
 	case AST_OBJECT_ATRIBUTE:
 		s = "";
 
@@ -890,23 +942,37 @@ string AstPHP::astNode(ego::ParseNode *p) {
 
 	case AST_EMPTY_ARGS:
 		s = "";
-
-		s.append("()");
+        
+        if (parent && parent->callingMethod && parent->callingMethod->isFuture) {
+            // this is a future method
+            // no need to open parenthesis
+            s.append(")");
+        } else {
+            s.append("()");
+        }
 
 		return s;
 		break;
 
 	case AST_ACTUAL_ARGS:
+    {
 		s = "";
 
-        s.append("(");
+        if (parent && parent->callingMethod && parent->callingMethod->isFuture) {
+            // this is a future method
+            // no need to open parenthesis
+            s.append(", ");
+        } else {
+            s.append("(");
+        }
         
-		s.append(this->astNode(p->op1));
+		s.append(this->astNode(p->op1, parent));
         
         s.append(")");
 
 		return s;
-		break;
+    }
+	break;
         
 	case AST_ACTUAL_ARG:
 		s = "";

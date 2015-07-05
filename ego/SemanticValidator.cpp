@@ -414,7 +414,7 @@ string SemanticValidator::find_return_type(ego::ParseNode* expr, ParentTypeNode*
                 varCls = ClassLoader::getClass(this->cls->resolveClassName(clsNode.sVal));
             }
 
-            ClassMethod* pMethod = varCls->getMethod(idNode.sVal);
+            ClassMethod* pMethod = varCls->getMethod(toLower(idNode.sVal));
 
             if (!pMethod->isStatic) {
                 ego::throwError(string("Class method accessed as Static is not defined as static "
@@ -429,11 +429,47 @@ string SemanticValidator::find_return_type(ego::ParseNode* expr, ParentTypeNode*
                         + ", "
                         + this->getErrorDetail()));
             }
+            
+            // get actual arguments from Syntax Tree
+            ego::ParseNode actualArgNode = this->table->getItem(expr->op2);
+            vector<string> actualArgTypes = this->getActualArgTypes(&actualArgNode);
+
+            if (actualArgTypes.size() > pMethod->getArgCount()) {
+                ego::throwError(string("Too many arguments to the method "
+                        + varCls->getFullName() + "::" + pMethod->name
+                        + ","
+                        + this->getErrorDetail()));
+            }
+            
+            for (int i=0; i < pMethod->getArgCount(); i++) {
+                Variable* var = pMethod->getArg(i);
+                
+                if (i < actualArgTypes.size()) {
+                
+                    if (!this->isTypeCompatibe(actualArgTypes[i], var->getQualifiedType())) {
+                        ego::throwError(string("Argument " + std::to_string(i+1) + " data type did not match, expected: "
+                            + var->getQualifiedType()
+                            + ", actual: " + actualArgTypes[i]
+                            + " to call method "
+                            + varCls->getFullName() + "::" + pMethod->name
+                            + ","
+                            + this->getErrorDetail()));
+                    }
+                } else {
+                    if (var->valNode == 0) {
+                        ego::throwError(string("Argument " + std::to_string(i+1) + " is required to call method "
+                            + varCls->getFullName() + "::" + pMethod->name
+                            + ","
+                            + this->getErrorDetail()));
+                    }
+                }
+            }
 
             return pMethod->returnType;
         }
         break;
 
+        
         case AST_ASSIGNMENT:
         {
             ego::ParseNode tmpNode = this->table->getItem(expr->op);
@@ -1045,6 +1081,14 @@ void SemanticValidator::checkClassMethod(ClassMethod* method) {
 				ego::throwError(string("future method " + method->name + " must not accept arguments other than scalar type in the class " + cls->name));
 			}
 		}
+        
+        if (!method->returnsVoid()) {
+            ego::throwError(string("future method " + method->name + " must be declared with return type 'void' in the class " + cls->name));
+        }
+        
+        if (!method->isPublic) {
+            ego::throwError(string("future method " + method->name + " must be declared as 'public' in the class " + cls->name));
+        }
 	}
 
 	string typeStr = method->qualifiedType.getQualified<ego::TypeGenericGroup>(&method->typeTable);
@@ -1132,6 +1176,12 @@ void SemanticValidator::processNode(ego::ParseNode* node, ClassMethod* method) {
         
         case AST_OBJECT_PROPERTY_ACCESS:
         {
+            this->find_return_type(node, NULL);
+        }
+        
+        case AST_STATIC_METHOD_CALL:
+        {
+            // this should be resolved after processing all files and classes
             this->find_return_type(node, NULL);
         }
         break;

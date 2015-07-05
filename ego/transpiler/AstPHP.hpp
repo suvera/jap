@@ -10,6 +10,16 @@
 
 namespace ego {
 
+class AstProcessObject {
+public:
+    SClass *callingCls = NULL;
+    ClassMethod *callingMethod = NULL;
+    ClassVariable *callingVar = NULL;
+    
+    bool isCallingMethod = false;
+};
+
+
 class AstPHP {
 private:
 	void _processClassVariables(SClass*);
@@ -19,6 +29,8 @@ private:
 	void _processClassVariable(ClassVariable*, SClass*);
 
 	void _processClassMethod(ClassMethod*, SClass*);
+    
+    ego::ParseNode _getNodeObject(BIGINT p);
 
 public:
 
@@ -33,6 +45,10 @@ public:
 	bool nsEnabled = false;
 
 	ego::FileParser *fileParser;
+    
+    ego::SClass *curCls = NULL;
+    
+    ego::ClassMethod *curMethod = NULL;
 
 	AstPHP();
 	AstPHP(ego::FileParser *kicker);
@@ -56,9 +72,9 @@ public:
 	void astClasses();
 	void astClass(SClass*);
 
-	string astNode(ego::ParseNode *p);
-	string astNode(ego::ParseNode p);
-	string astNode(BIGINT p);
+	string astNode(ego::ParseNode *p, AstProcessObject*);
+	string astNode(ego::ParseNode p, AstProcessObject*);
+	string astNode(BIGINT p, AstProcessObject*);
 
 	string astLexNode(ego::ParseNode *p);
 	string astLexNode(ego::ParseNode p);
