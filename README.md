@@ -23,7 +23,7 @@ class Test {
 
 ### How to run it
 ```bash
-# Compile to PHP source
+# Compile
 jap Test.jap
 
 # Execute
@@ -32,7 +32,7 @@ Hello, World!
 ```
 
 
-**Rule-1: File name and Class name must be same**
+**Naming Standard: File name and Class name must be same**
 
 
 tests/Fibonacci.jap
@@ -74,7 +74,7 @@ class Fibonacci {
 
 ### How to run it
 ```bash
-# Compile to PHP source
+# Compile
 jap tests/Fibonacci.jap
 
 # Execute
