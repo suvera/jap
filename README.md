@@ -7,8 +7,6 @@
 > JAP is a Object Oriented programming language designed for fun, it's syntax is mix of JAVA + PHP
 
 
-All JAP programs will be translated to PHP/Hack/Java ( Hack/Java under development) when you compile it.
-
 
 # Examples
 
@@ -37,7 +35,7 @@ Hello, World!
 **Rule-1: File name and Class name must be same**
 
 
-tests/Fibonacci.jsp
+tests/Fibonacci.jap
 ```php
 package tests;
 
